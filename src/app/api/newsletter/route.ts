@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: NextRequest) {
   try {
@@ -8,12 +11,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
     }
 
-    // TODO: Connect to Mailchimp / Resend Audience
-    // Example with Resend Audiences (when ready):
-    // const resend = new Resend(process.env.RESEND_API_KEY)
-    // await resend.contacts.create({ email, audienceId: process.env.RESEND_AUDIENCE_ID! })
+    if (!process.env.RESEND_API_KEY || !process.env.RESEND_AUDIENCE_ID) {
+      console.error('Newsletter: RESEND_API_KEY or RESEND_AUDIENCE_ID is not set')
+      return NextResponse.json({ error: 'Newsletter service not configured' }, { status: 500 })
+    }
 
-    console.log('Newsletter signup:', email)
+    const { error } = await resend.contacts.create({
+      email,
+      unsubscribed: false,
+      audienceId: process.env.RESEND_AUDIENCE_ID,
+    })
+
+    if (error) {
+      console.error('Newsletter signup failed:', error)
+      return NextResponse.json({ error: 'Could not subscribe' }, { status: 502 })
+    }
 
     return NextResponse.json({ success: true })
   } catch {
