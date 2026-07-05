@@ -1,14 +1,53 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Preloader from '@/components/Preloader'
 import WhatsAppWidget from '@/components/WhatsAppWidget'
 
+// Base URL used to resolve Open Graph / canonical URLs.
+// Override with NEXT_PUBLIC_SITE_URL once a custom domain is connected;
+// otherwise falls back to the Vercel production URL, then localhost.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000')
+
+const title = 'Image Refining Academy — Elevating Elegance, Empowering Lives'
+const description =
+  'Image Refining Academy by Chinenye Nmerole offers world-class etiquette training for children, teens, and adults. Refine your image from the inside out.'
+
 export const metadata: Metadata = {
-  title: 'Image Refining Academy — Elevating Elegance, Empowering Lives',
-  description:
-    'Image Refining Academy by Chinenye Nmerole offers world-class etiquette training for children, teens, and adults. Refine your image from the inside out.',
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords: [
+    'etiquette training',
+    'image consulting',
+    'personal branding',
+    'finishing school',
+    'Image Refining Academy',
+    'Chinenye Nmerole',
+    'Nigeria etiquette',
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    siteName: 'Image Refining Academy',
+    locale: 'en_NG',
+    url: siteUrl,
+    title,
+    description,
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Image Refining Academy' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: ['/og-image.png'],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -27,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppWidget />
+        <Analytics />
       </body>
     </html>
   )
