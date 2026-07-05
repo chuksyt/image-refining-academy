@@ -3,19 +3,31 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const images = [
-  { src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=75', caption: 'Workshop Session',    category: 'workshops' },
-  { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=75', caption: 'Dining Masterclass',   category: 'dining' },
-  { src: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&q=75', caption: 'Corporate Training',  category: 'corporate' },
-  { src: 'https://images.unsplash.com/photo-1519671282429-b44b4eb07a1f?w=700&q=75', caption: 'Graduation Ceremony', category: 'events' },
-  { src: 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=700&q=75', caption: 'Teen Finishing School',category: 'workshops' },
-  { src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&q=75', caption: 'Personal Branding',   category: 'branding' },
+const images: MediaItem[] = [
+  { src: 'https://img.youtube.com/vi/ZbAuKkY-3IU/hqdefault.jpg', caption: 'Teens Dining Session', category: 'dining', videoId: 'ZbAuKkY-3IU' },
+  { src: '/gallery/dining-1.jpg', caption: "Women's Dining Etiquette Training", category: 'dining' },
+  { src: 'https://img.youtube.com/vi/Me0bTzPIxLk/hqdefault.jpg', caption: 'Ushering Duty', category: 'ushering', videoId: 'Me0bTzPIxLk' },
+  { src: '/gallery/ushering-1.jpg', caption: 'Refined Ushers — Birthday Celebration', category: 'ushering' },
+  { src: '/gallery/ushering-2.jpg', caption: 'Isoken Book Launch Ushers',              category: 'ushering' },
+  { src: '/gallery/ushering-3.jpg', caption: 'Cultural Reception Ushers',              category: 'ushering' },
+  { src: '/gallery/ushering-4.jpg', caption: 'Isoken Book Launch',                     category: 'ushering' },
   { src: '/chinenye.jpg', caption: 'Image Consulting',    category: 'branding' },
-  { src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=700&q=75', caption: "Children's Class",    category: 'workshops' },
-  { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=75', caption: 'Team Building',       category: 'corporate' },
+  { src: '/gallery/branding-1.jpg', caption: 'Signature Style',        category: 'branding' },
+  { src: '/gallery/branding-2.jpg', caption: 'Poise & Presence',       category: 'branding' },
+  { src: '/gallery/branding-3.jpg', caption: 'Colour & Confidence',    category: 'branding' },
+  { src: '/gallery/branding-4.jpg', caption: 'Radiant & Refined',      category: 'branding' },
+  { src: '/gallery/workshop-1.jpg', caption: 'Teen Etiquette Workshop',        category: 'workshop' },
+  { src: '/gallery/workshop-2.jpg', caption: 'Engaged Learners',               category: 'workshop' },
+  { src: '/gallery/workshop-3.jpg', caption: 'Registration & Onboarding',      category: 'workshop' },
+  { src: '/gallery/workshop-4.jpg', caption: 'Finishing School Session',       category: 'workshop' },
+  { src: '/gallery/workshop-5.jpg', caption: 'Interactive Training',           category: 'workshop' },
+  { src: '/gallery/workshop-6.jpg', caption: 'Etiquette & Poise Class',        category: 'workshop' },
+  { src: '/gallery/workshop-7.jpg', caption: 'Personal Refining Workshop',     category: 'workshop' },
+  { src: '/gallery/workshop-8.jpg', caption: 'Guest Speaking Engagement',      category: 'workshop' },
 ]
 
-type Cat = 'all' | 'workshops' | 'dining' | 'corporate' | 'events' | 'branding'
+type Cat = 'all' | 'dining' | 'ushering' | 'branding' | 'workshop'
+type MediaItem = { src: string; caption: string; category: Exclude<Cat, 'all'>; videoId?: string }
 
 export default function GalleryPage() {
   const [filter, setFilter] = useState<Cat>('all')
@@ -45,10 +57,9 @@ export default function GalleryPage() {
   const filtered = images.filter(img => filter === 'all' || img.category === filter)
   const tabs: { key: Cat; label: string }[] = [
     { key: 'all',       label: 'All' },
-    { key: 'workshops', label: 'Workshops' },
+    { key: 'workshop',  label: 'Workshop' },
     { key: 'dining',    label: 'Dining' },
-    { key: 'corporate', label: 'Corporate' },
-    { key: 'events',    label: 'Events' },
+    { key: 'ushering',  label: 'Ushering' },
     { key: 'branding',  label: 'Branding' },
   ]
 
@@ -90,6 +101,13 @@ export default function GalleryPage() {
               <div key={img.src} onClick={() => setLightbox(i)}
                 className="break-inside-avoid img-zoom rounded-2xl overflow-hidden relative group cursor-pointer">
                 <Image src={img.src} alt={img.caption} width={700} height={500} className="w-full object-cover" />
+                {img.videoId && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-16 h-16 rounded-full bg-black/50 backdrop-blur flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <span className="text-white text-2xl ml-1">▶</span>
+                    </div>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                   <span className="text-white text-sm font-medium">{img.caption}</span>
                 </div>
@@ -105,8 +123,20 @@ export default function GalleryPage() {
           <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 z-10">✕</button>
           <button onClick={e => { e.stopPropagation(); setLightbox(i => i !== null ? (i - 1 + filtered.length) % filtered.length : null) }}
             className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 z-10">‹</button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={filtered[lightbox].src} alt={filtered[lightbox].caption} style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: '0.5rem' }} onClick={e => e.stopPropagation()} />
+          {filtered[lightbox].videoId ? (
+            <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: 'min(90vw, 420px)', aspectRatio: '9 / 16', maxHeight: '85vh' }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${filtered[lightbox].videoId}?autoplay=1&playsinline=1`}
+                title={filtered[lightbox].caption}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{ width: '100%', height: '100%', border: 0, borderRadius: '0.5rem' }}
+              />
+            </div>
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img src={filtered[lightbox].src} alt={filtered[lightbox].caption} style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: '0.5rem' }} onClick={e => e.stopPropagation()} />
+          )}
           <button onClick={e => { e.stopPropagation(); setLightbox(i => i !== null ? (i + 1) % filtered.length : null) }}
             className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 z-10">›</button>
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm">{filtered[lightbox].caption}</div>

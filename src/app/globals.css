@@ -52,6 +52,8 @@ html { scroll-behavior: smooth; }
 .stagger.visible > *:nth-child(10) { opacity:1;transform:none;transition-delay:0.68s; }
 .stagger.visible > *:nth-child(11) { opacity:1;transform:none;transition-delay:0.75s; }
 .stagger.visible > *:nth-child(12) { opacity:1;transform:none;transition-delay:0.82s; }
+/* Fallback: reveal any items beyond the 12 explicitly-delayed ones (nth-child rules keep their stagger via higher specificity) */
+.stagger.visible > * { opacity:1; transform:none; }
 
 /* Float */
 @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }

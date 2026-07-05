@@ -49,15 +49,15 @@ const features = [
 ]
 
 const testimonials = [
-  { quote: "Your session was engaging, informative, and truly impactful. The etiquette training helped me develop my self-awareness, empathy, and self-control, leading to greater emotional intelligence. I am excited to continue learning and refining my skills. Thank you for creating such a supportive and educational environment.", name: 'Ike Goodness', role: 'Etiquette Training Graduate', avatar: 'https://i.pravatar.cc/80?img=15' },
-  { quote: "I recently attended the 3-day programme on etiquette, purpose, and goal setting, and I found it incredibly insightful. The session was well-structured, engaging, and the interactive elements were excellent. I rate this programme 5/5 and highly recommend it to anyone looking to improve their personal and professional development. I would love to come back over and over again!", name: 'Programme Graduate', role: '3-Day Programme Participant', avatar: 'https://i.pravatar.cc/80?img=25' },
-  { quote: "Your training has been a game changer for me. From the very first day to the end it was amazing — the lessons on etiquette, respect, manners, and protocol have been invaluable. I am grateful for the tools and insights you shared to help me build my self-confidence. You have empowered me to believe in myself and my abilities. Thank you ma.", name: 'Training Participant', role: 'Etiquette & Personal Development Graduate', avatar: 'https://i.pravatar.cc/80?img=47' },
+  { quote: "Your session was engaging, informative, and truly impactful. The etiquette training helped me develop my self-awareness, empathy, and self-control, leading to greater emotional intelligence. I am excited to continue learning and refining my skills. Thank you for creating such a supportive and educational environment.", name: 'Ike Goodness', role: 'Etiquette Training Graduate', avatar: 'https://api.dicebear.com/9.x/avataaars/svg?seed=IkeGoodness&backgroundColor=b6e3f4' },
+  { quote: "I recently attended the 3-day programme on etiquette, purpose, and goal setting, and I found it incredibly insightful. The session was well-structured, engaging, and the interactive elements were excellent. I rate this programme 5/5 and highly recommend it to anyone looking to improve their personal and professional development. I would love to come back over and over again!", name: 'Programme Graduate', role: '3-Day Programme Participant', avatar: 'https://api.dicebear.com/9.x/avataaars/svg?seed=ProgrammeGraduate&backgroundColor=ffd5dc' },
+  { quote: "Your training has been a game changer for me. From the very first day to the end it was amazing — the lessons on etiquette, respect, manners, and protocol have been invaluable. I am grateful for the tools and insights you shared to help me build my self-confidence. You have empowered me to believe in myself and my abilities. Thank you ma.", name: 'Training Participant', role: 'Etiquette & Personal Development Graduate', avatar: 'https://api.dicebear.com/9.x/avataaars/svg?seed=TrainingParticipant&backgroundColor=c0aede' },
 ]
 
 const gallery = [
-  { src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&q=70', caption: 'Workshop Session', tall: false },
-  { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=70', caption: 'Dining Masterclass', tall: true },
-  { src: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&q=70', caption: 'Corporate Training', tall: false },
+  { src: '/gallery/workshop-1.jpg', caption: 'Etiquette Workshop', tall: false },
+  { src: '/gallery/dining-1.jpg',   caption: 'Dining Etiquette',   tall: true },
+  { src: '/gallery/ushering-1.jpg', caption: 'Ushering & Protocol', tall: false },
 ]
 
 const whyUs = [
@@ -138,7 +138,7 @@ export default function Home() {
             </div>
 
             <div className="flex gap-8">
-              {[{ n: 1200, suffix: '+', label: 'Students Trained' }, { n: 100, suffix: '+', label: 'Teens Trained Free' }, { n: 5, suffix: '+', label: 'Years of Impact' }].map(s => (
+              {[{ n: 1200, suffix: '+', label: 'Students Trained' }, { n: 100, suffix: '+', label: 'Teens Trained Free' }, { n: 6, suffix: '+', label: 'Years of Impact' }].map(s => (
                 <div key={s.label}>
                   <div className="text-3xl font-bold text-white"><Counter target={s.n} />{s.suffix}</div>
                   <div className="text-white/60 text-sm mt-1">{s.label}</div>
@@ -151,10 +151,10 @@ export default function Home() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80"
-                  alt="Elegant woman at a formal table setting"
+                  src="/chinenye2.jpg"
+                  alt="Chinenye Nmerole — Founder, Image Refining Academy"
                   width={600} height={700}
-                  className="w-full h-[500px] object-cover"
+                  className="w-full h-[500px] object-cover object-top"
                   priority
                 />
               </div>
@@ -260,7 +260,7 @@ export default function Home() {
       {/* ── Stats ── */}
       <section className="py-16 bg-gradient-to-r from-violet-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          {[{ n:1200,s:'+',l:'Students Trained'},{n:10,s:'+',l:'Years of Excellence'},{n:6,s:'',l:'Signature Courses'},{n:98,s:'%',l:'Student Satisfaction'}].map(st => (
+          {[{ n:1200,s:'+',l:'Students Trained'},{n:6,s:'+',l:'Years of Excellence'},{n:6,s:'',l:'Signature Courses'},{n:98,s:'%',l:'Student Satisfaction'}].map(st => (
             <div key={st.l} className="reveal">
               <div className="text-4xl font-bold text-white mb-1"><Counter target={st.n} />{st.s}</div>
               <div className="text-white/80 text-sm">{st.l}</div>
@@ -283,7 +283,7 @@ export default function Home() {
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-5 shadow-lg text-center">
-                <div className="text-3xl font-bold text-violet-700 leading-none">10+</div>
+                <div className="text-3xl font-bold text-violet-700 leading-none">6+</div>
                 <div className="text-gray-500 text-xs mt-1">Years Experience</div>
               </div>
               <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-br from-violet-200 to-purple-200 border-2 border-violet-300" />
@@ -390,7 +390,8 @@ export default function Home() {
                 <div className="text-yellow-400 text-lg mb-4">★★★★★</div>
                 <p className="text-gray-600 leading-relaxed text-sm mb-6 italic">&ldquo;{t.quote}&rdquo;</p>
                 <div className="flex items-center gap-3">
-                  <Image src={t.avatar} alt={t.name} width={44} height={44} className="rounded-full" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={t.avatar} alt={t.name} width={44} height={44} className="rounded-full bg-violet-100" />
                   <div>
                     <div className="font-bold text-gray-900 text-sm">{t.name}</div>
                     <div className="text-gray-400 text-xs">{t.role}</div>

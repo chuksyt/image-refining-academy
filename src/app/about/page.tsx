@@ -59,7 +59,7 @@ export default function AboutPage() {
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-5 shadow-xl text-center">
-                <div className="text-3xl font-bold text-violet-700">10+</div>
+                <div className="text-3xl font-bold text-violet-700">6+</div>
                 <div className="text-gray-500 text-xs mt-1">Years Experience</div>
               </div>
               <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-br from-violet-200 to-purple-200 border-2 border-violet-300" />

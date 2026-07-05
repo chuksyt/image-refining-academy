@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Gallery — Image Refining Academy',
     description: 'Moments of elegance from Image Refining Academy workshops and events.',
-    images: [{ url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80' }],
+    images: [{ url: '/gallery/ushering-1.jpg' }],
   },
 }
 
