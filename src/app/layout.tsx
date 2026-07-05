@@ -40,13 +40,13 @@ export const metadata: Metadata = {
     url: siteUrl,
     title,
     description,
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Image Refining Academy' }],
+    images: [{ url: '/social-image', width: 1200, height: 630, alt: 'Image Refining Academy' }],
   },
   twitter: {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/og-image.png'],
+    images: ['/social-image'],
   },
 }
 
