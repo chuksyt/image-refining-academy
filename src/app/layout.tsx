@@ -15,9 +15,9 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:3000')
 
-const title = 'Image Refining Academy — Elevating Elegance, Empowering Lives'
+const title = 'Image Refining Academy — Etiquette & Image Training'
 const description =
-  'Image Refining Academy by Chinenye Nmerole offers world-class etiquette training for children, teens, and adults. Refine your image from the inside out.'
+  'World-class etiquette and image training for children, teens, and adults. Refine your image from the inside out.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
