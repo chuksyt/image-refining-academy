@@ -29,7 +29,7 @@ export default function Newsletter() {
           Get Weekly Elegance Tips in Your Inbox
         </h2>
         <p className="text-white/70 mb-8">
-          Join 500+ subscribers receiving etiquette insights, course updates, and exclusive early-bird offers — delivered every Tuesday.
+          Join to be the first to get exclusive updates, course launches, and early-bird offers.
         </p>
 
         {status === 'success' ? (
