@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     'Nigeria etiquette',
   ],
   alternates: { canonical: '/' },
+  verification: {
+    google: 'tzJTxisuBkETLJDWLligz_JpgEUTQAaWaxHEnBeDW0o',
+  },
   openGraph: {
     type: 'website',
     siteName: 'Image Refining Academy',
