@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
                 </p>
 
                 <div style="text-align:center;margin-bottom:28px;">
-                  <a href="https://imagerefiningacademy.com/courses" style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#9333ea);color:white;text-decoration:none;font-weight:700;font-size:14px;padding:14px 32px;border-radius:50px;">
+                  <a href="https://imagerefiningacademy.vercel.app/courses" style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#9333ea);color:white;text-decoration:none;font-weight:700;font-size:14px;padding:14px 32px;border-radius:50px;">
                     View Your Course →
                   </a>
                 </div>

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/lib/blog'
 
-const BASE_URL = 'https://imagerefiningacademy.com'
+const BASE_URL = 'https://imagerefiningacademy.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
