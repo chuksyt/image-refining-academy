@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import Preloader from '@/components/Preloader'
-import WhatsAppWidget from '@/components/WhatsAppWidget'
+import SiteFrame from '@/components/SiteFrame'
 
 // Base URL used to resolve Open Graph / canonical URLs.
 // Override with NEXT_PUBLIC_SITE_URL once a custom domain is connected;
@@ -64,11 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="https://js.paystack.co/v1/inline.js" async />
       </head>
       <body className="min-h-full flex flex-col">
-        <Preloader />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppWidget />
+        <SiteFrame>{children}</SiteFrame>
         <Analytics />
       </body>
     </html>

@@ -13,7 +13,12 @@ export interface BlogPost {
   featured?: boolean
 }
 
-export const BLOG_POSTS: BlogPost[] = [
+// SEED_POSTS is the built-in default content. It is used as the fallback when
+// no posts have been saved to Blob storage yet (e.g. before the first edit, or
+// in local dev without a Blob token). Server-side reads/writes live in
+// `src/lib/blog-store.ts`. This file stays free of server-only imports so it can
+// be safely imported by client components (e.g. the homepage teaser).
+export const SEED_POSTS: BlogPost[] = [
   {
     slug: 'meet-the-image-refiner',
     title: 'Meet The Image Refiner: My Story, My Mission, and Why I Do What I Do',
@@ -65,8 +70,20 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ]
 
+// Backwards-compatible alias. Prefer the async helpers in `blog-store.ts` for
+// live data; this synchronous export only ever reflects the built-in seed.
+export const BLOG_POSTS = SEED_POSTS
+
 export function getPostBySlug(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find(p => p.slug === slug)
+  return SEED_POSTS.find(p => p.slug === slug)
 }
 
-export const CATEGORIES = ['All', 'Lifestyle', 'Personal Branding']
+// Category list is derived from the actual posts so newly-added categories show
+// up automatically. "All" is always first.
+export function deriveCategories(posts: BlogPost[]): string[] {
+  const seen = new Set<string>()
+  for (const p of posts) {
+    if (p.category) seen.add(p.category)
+  }
+  return ['All', ...seen]
+}

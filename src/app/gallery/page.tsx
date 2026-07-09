@@ -2,36 +2,15 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-
-const images: MediaItem[] = [
-  { src: 'https://img.youtube.com/vi/ZbAuKkY-3IU/hqdefault.jpg', caption: 'Teens Dining Session', category: 'dining', videoId: 'ZbAuKkY-3IU' },
-  { src: '/gallery/dining-1.jpg', caption: "Women's Dining Etiquette Training", category: 'dining' },
-  { src: 'https://img.youtube.com/vi/Me0bTzPIxLk/hqdefault.jpg', caption: 'Ushering Duty', category: 'ushering', videoId: 'Me0bTzPIxLk' },
-  { src: '/gallery/ushering-1.jpg', caption: 'Refined Ushers — Birthday Celebration', category: 'ushering' },
-  { src: '/gallery/ushering-2.jpg', caption: 'Isoken Book Launch Ushers',              category: 'ushering' },
-  { src: '/gallery/ushering-3.jpg', caption: 'Cultural Reception Ushers',              category: 'ushering' },
-  { src: '/gallery/ushering-4.jpg', caption: 'Isoken Book Launch',                     category: 'ushering' },
-  { src: '/chinenye.jpg', caption: 'Image Consulting',    category: 'branding' },
-  { src: '/gallery/branding-1.jpg', caption: 'Signature Style',        category: 'branding' },
-  { src: '/gallery/branding-2.jpg', caption: 'Poise & Presence',       category: 'branding' },
-  { src: '/gallery/branding-3.jpg', caption: 'Colour & Confidence',    category: 'branding' },
-  { src: '/gallery/branding-4.jpg', caption: 'Radiant & Refined',      category: 'branding' },
-  { src: '/gallery/workshop-1.jpg', caption: 'Teen Etiquette Workshop',        category: 'workshop' },
-  { src: '/gallery/workshop-2.jpg', caption: 'Engaged Learners',               category: 'workshop' },
-  { src: '/gallery/workshop-3.jpg', caption: 'Registration & Onboarding',      category: 'workshop' },
-  { src: '/gallery/workshop-4.jpg', caption: 'Finishing School Session',       category: 'workshop' },
-  { src: '/gallery/workshop-5.jpg', caption: 'Interactive Training',           category: 'workshop' },
-  { src: '/gallery/workshop-6.jpg', caption: 'Etiquette & Poise Class',        category: 'workshop' },
-  { src: '/gallery/workshop-7.jpg', caption: 'Personal Refining Workshop',     category: 'workshop' },
-  { src: '/gallery/workshop-8.jpg', caption: 'Guest Speaking Engagement',      category: 'workshop' },
-]
+import { SEED_GALLERY } from '@/lib/gallery'
+import { useLiveData } from '@/lib/useLiveData'
 
 type Cat = 'all' | 'dining' | 'ushering' | 'branding' | 'workshop'
-type MediaItem = { src: string; caption: string; category: Exclude<Cat, 'all'>; videoId?: string }
 
 export default function GalleryPage() {
   const [filter, setFilter] = useState<Cat>('all')
   const [lightbox, setLightbox] = useState<number | null>(null)
+  const images = useLiveData('/api/gallery', 'items', SEED_GALLERY)
 
   useEffect(() => {
     const els = document.querySelectorAll('.reveal,.stagger')

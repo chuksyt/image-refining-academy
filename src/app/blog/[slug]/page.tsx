@@ -2,18 +2,17 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { BLOG_POSTS, getPostBySlug } from '@/lib/blog'
+import { getAllPosts, getPost } from '@/lib/blog-store'
 import ShareButtons from './ShareButtons'
 
 interface Props { params: Promise<{ slug: string }> }
 
-export async function generateStaticParams() {
-  return BLOG_POSTS.map(p => ({ slug: p.slug }))
-}
+// Posts are stored in Blob and edited live, so render on demand.
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const post = await getPost(slug)
   if (!post) return {}
   return {
     title: `${post.title} — Image Refining Academy`,
@@ -31,10 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const posts = await getAllPosts()
+  const post = posts.find(p => p.slug === slug)
   if (!post) notFound()
 
-  const related = BLOG_POSTS.filter(p => p.slug !== post.slug && p.category === post.category).slice(0, 3)
+  const related = posts.filter(p => p.slug !== post.slug && p.category === post.category).slice(0, 3)
 
   return (
     <>
