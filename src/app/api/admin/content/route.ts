@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth, refresh } from '@/lib/api-auth'
 import { getSiteContent, saveSiteContent } from '@/lib/content-store'
-import { SEED_CONTENT, type SiteContent, type HomeStat } from '@/lib/content'
+import { SEED_CONTENT, type SiteContent, type HomeStat, type AboutValue, type Milestone } from '@/lib/content'
 
 function str(v: unknown, fallback = ''): string {
   return typeof v === 'string' ? v : fallback
@@ -27,6 +27,20 @@ function parseContent(body: unknown): SiteContent {
     ? about.storyParagraphs.map(p => str(p)).filter(p => p.trim() !== '')
     : SEED_CONTENT.about.storyParagraphs
 
+  const values: AboutValue[] = Array.isArray(about.values)
+    ? about.values.map(v => {
+        const o = v as Record<string, unknown>
+        return { icon: str(o.icon), title: str(o.title), desc: str(o.desc) }
+      }).filter(v => v.title.trim() !== '' || v.desc.trim() !== '')
+    : SEED_CONTENT.about.values
+
+  const milestones: Milestone[] = Array.isArray(about.milestones)
+    ? about.milestones.map(m => {
+        const o = m as Record<string, unknown>
+        return { year: str(o.year), title: str(o.title), desc: str(o.desc) }
+      }).filter(m => m.title.trim() !== '' || m.desc.trim() !== '')
+    : SEED_CONTENT.about.milestones
+
   return {
     home: {
       heroBadge: str(home.heroBadge, SEED_CONTENT.home.heroBadge),
@@ -40,6 +54,8 @@ function parseContent(body: unknown): SiteContent {
       heroSubtitle: str(about.heroSubtitle, SEED_CONTENT.about.heroSubtitle),
       storyHeading: str(about.storyHeading, SEED_CONTENT.about.storyHeading),
       storyParagraphs,
+      values,
+      milestones,
       ctaTitle: str(about.ctaTitle, SEED_CONTENT.about.ctaTitle),
       ctaText: str(about.ctaText, SEED_CONTENT.about.ctaText),
     },

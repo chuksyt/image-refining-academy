@@ -5,24 +5,10 @@ import Link from 'next/link'
 import { SEED_CONTENT } from '@/lib/content'
 import { useLiveData } from '@/lib/useLiveData'
 
-const milestones = [
-  { year: '2020', title: 'Image Refining Academy Founded', desc: 'After years in banking and the private sector, Chinenye founded Image Refining Academy to help people move from crude personality to deserving, desirable character — equipping them to seize the opportunities they deserve.' },
-  { year: '2022', title: 'Teens Refinement Programme Launched', desc: 'Noticing that many young adults wanted to grow but could not afford full programmes, Chinenye launched a free etiquette and refinement training for teenagers. Over 100 young brands have since been trained at no cost, running every April and September.' },
-  { year: '2023', title: 'The Refined Lady (TRL) Launched', desc: 'An online programme created specifically for women who had lost themselves through caregiving, career gaps or the passing of time. TRL helps women above 40 rediscover their identity, rebuild self-esteem and move forward with purpose.' },
-  { year: '2023', title: 'The Graceful Women\'s Conference', desc: 'Chinenye founded this annual women\'s conference held every July, bringing together a team dedicated to the physical, emotional and financial empowerment of women — fully sponsored to maximise reach and impact.' },
-  { year: '2024', title: 'The Insights W/Chinenye', desc: 'Evolved from the beloved Tuesday W/Chinenye series, this weekly free online programme at 5 PM WAT delivers consistent, value-packed training to a growing community of followers and students.' },
-  { year: '2025', title: 'Expanding Global Reach', desc: 'With certifications from Packway Academy, CICM Canada/US and Alison International, Chinenye continues to grow the Academy\'s impact across schools, churches, organisations and professionals worldwide.' },
-]
-
-const values = [
-  { icon: '💎', title: 'Excellence', desc: 'We hold ourselves to the highest standards in everything we teach and how we operate.' },
-  { icon: '🤝', title: 'Integrity', desc: 'Honesty, authenticity, and ethical conduct are at the core of all our programmes.' },
-  { icon: '🌱', title: 'Growth', desc: 'We believe every individual has the capacity to grow, refine, and continually become better.' },
-  { icon: '🌍', title: 'Impact', desc: 'Our mission extends beyond the classroom — we aim to shape a more gracious society.' },
-]
-
 export default function AboutPage() {
   const about = useLiveData('/api/content', 'content', SEED_CONTENT).about
+  const milestones = about.milestones
+  const values = about.values
   useEffect(() => {
     const els = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger')
     const obs = new IntersectionObserver(entries => {

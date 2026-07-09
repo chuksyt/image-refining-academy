@@ -27,6 +27,21 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
     })
   }
 
+  type AValue = SiteContent['about']['values'][number]
+  type AMilestone = SiteContent['about']['milestones'][number]
+
+  function setValue(i: number, patch: Partial<AValue>) {
+    setAbout('values', c.about.values.map((v, idx) => (idx === i ? { ...v, ...patch } : v)))
+  }
+  function addValue() { setAbout('values', [...c.about.values, { icon: '✨', title: '', desc: '' }]) }
+  function removeValue(i: number) { setAbout('values', c.about.values.filter((_, idx) => idx !== i)) }
+
+  function setMilestone(i: number, patch: Partial<AMilestone>) {
+    setAbout('milestones', c.about.milestones.map((m, idx) => (idx === i ? { ...m, ...patch } : m)))
+  }
+  function addMilestone() { setAbout('milestones', [...c.about.milestones, { year: '', title: '', desc: '' }]) }
+  function removeMilestone(i: number) { setAbout('milestones', c.about.milestones.filter((_, idx) => idx !== i)) }
+
   async function save() {
     setSaving(true); setError(null); setNotice(null)
     try {
@@ -75,6 +90,47 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
           <label className={label}>Story paragraphs <span className="text-gray-400 font-normal">— separate with a blank line</span></label>
           <textarea value={c.about.storyParagraphs.join('\n\n')} onChange={e => setAbout('storyParagraphs', e.target.value.split(/\n\s*\n/))} rows={10} className={inputCls} />
         </div>
+
+        {/* Core Values */}
+        <div className="pt-2 border-t border-gray-100">
+          <div className="flex items-center justify-between mb-2">
+            <label className={label + ' mb-0'}>Core Values</label>
+            <button onClick={addValue} className="text-sm font-medium text-violet-600 hover:text-violet-800">＋ Add value</button>
+          </div>
+          <div className="space-y-2">
+            {c.about.values.map((v, i) => (
+              <div key={i} className="grid grid-cols-[56px_1fr_auto] gap-2 items-start">
+                <input value={v.icon} onChange={e => setValue(i, { icon: e.target.value })} placeholder="💎" className={inputCls + ' text-center'} />
+                <div className="space-y-2">
+                  <input value={v.title} onChange={e => setValue(i, { title: e.target.value })} placeholder="Title" className={inputCls} />
+                  <textarea value={v.desc} onChange={e => setValue(i, { desc: e.target.value })} placeholder="Description" rows={2} className={inputCls} />
+                </div>
+                <button onClick={() => removeValue(i)} className="text-sm text-red-600 hover:text-red-800 pt-2">Remove</button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Story of Impact (timeline) */}
+        <div className="pt-2 border-t border-gray-100">
+          <div className="flex items-center justify-between mb-2">
+            <label className={label + ' mb-0'}>Story of Impact (timeline)</label>
+            <button onClick={addMilestone} className="text-sm font-medium text-violet-600 hover:text-violet-800">＋ Add milestone</button>
+          </div>
+          <div className="space-y-2">
+            {c.about.milestones.map((m, i) => (
+              <div key={i} className="grid grid-cols-[80px_1fr_auto] gap-2 items-start">
+                <input value={m.year} onChange={e => setMilestone(i, { year: e.target.value })} placeholder="Year" className={inputCls + ' text-center'} />
+                <div className="space-y-2">
+                  <input value={m.title} onChange={e => setMilestone(i, { title: e.target.value })} placeholder="Title" className={inputCls} />
+                  <textarea value={m.desc} onChange={e => setMilestone(i, { desc: e.target.value })} placeholder="Description" rows={2} className={inputCls} />
+                </div>
+                <button onClick={() => removeMilestone(i)} className="text-sm text-red-600 hover:text-red-800 pt-2">Remove</button>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div><label className={label}>CTA title</label><input value={c.about.ctaTitle} onChange={e => setAbout('ctaTitle', e.target.value)} className={inputCls} /></div>
         <div><label className={label}>CTA text</label><textarea value={c.about.ctaText} onChange={e => setAbout('ctaText', e.target.value)} rows={2} className={inputCls} /></div>
       </div>
