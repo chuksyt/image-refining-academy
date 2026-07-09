@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { COURSES, type Course } from '@/lib/courses'
+import { useLiveData } from '@/lib/useLiveData'
 
 interface Props {
   courseKey: string | null
@@ -17,7 +18,8 @@ declare global {
 
 export default function EnrollModal({ courseKey, onClose }: Props) {
   const formRef = useRef<HTMLFormElement>(null)
-  const course: Course | undefined = COURSES.find(c => c.key === courseKey)
+  const courses = useLiveData('/api/courses', 'courses', COURSES)
+  const course: Course | undefined = courses.find(c => c.key === courseKey)
   const isOpen = !!course
 
   useEffect(() => {

@@ -2,6 +2,8 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { SEED_CONTENT } from '@/lib/content'
+import { useLiveData } from '@/lib/useLiveData'
 
 const milestones = [
   { year: '2020', title: 'Image Refining Academy Founded', desc: 'After years in banking and the private sector, Chinenye founded Image Refining Academy to help people move from crude personality to deserving, desirable character — equipping them to seize the opportunities they deserve.' },
@@ -20,6 +22,7 @@ const values = [
 ]
 
 export default function AboutPage() {
+  const about = useLiveData('/api/content', 'content', SEED_CONTENT).about
   useEffect(() => {
     const els = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger')
     const obs = new IntersectionObserver(entries => {
@@ -40,8 +43,8 @@ export default function AboutPage() {
             <span>›</span>
             <span className="text-purple-400">About</span>
           </div>
-          <h1 className="text-5xl font-bold text-white mb-4">About Us</h1>
-          <p className="text-white/60 text-lg max-w-xl">Transforming lives through etiquette, personal development and purposeful refinement since 2020.</p>
+          <h1 className="text-5xl font-bold text-white mb-4">{about.heroTitle}</h1>
+          <p className="text-white/60 text-lg max-w-xl">{about.heroSubtitle}</p>
         </div>
       </section>
 
@@ -69,13 +72,12 @@ export default function AboutPage() {
           <div className="reveal-right">
             <div className="text-violet-600 font-semibold text-sm mb-3">Our Story</div>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Built on Passion for <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Polished Excellence</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">{about.storyHeading}</span>
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
-              <p><strong className="text-gray-900">Chinenye Juliet Nmerole</strong> is a Certified Etiquette and Personal Development Consultant, speaker, trainer and transformational coach passionate about helping people become the best version of themselves.</p>
-              <p>As the Founder of Image Refining Academy, she has dedicated her work to equipping teenagers, women, young adults, schools, churches, organisations and professionals with the knowledge, character and practical life skills needed to thrive in today&apos;s world without compromising their values.</p>
-              <p>Her teaching goes beyond knowing the right etiquette. She believes true refinement begins from within — through character, confidence, emotional intelligence, purpose discovery and a relationship with God. Her training combines timeless etiquette principles with practical personal development, leadership, communication, digital citizenship, financial literacy and future-ready skills.</p>
-              <p>She is especially passionate about raising a generation of teenagers who are confident, responsible and purpose-driven, while empowering women to rediscover their identity, build healthy self-esteem and lead with elegance and influence.</p>
+              {about.storyParagraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
             <div className="flex flex-wrap gap-4 mt-8">
               {['Certified Etiquette Consultant','Transformational Coach','Speaker & Trainer'].map(tag => (
@@ -140,8 +142,8 @@ export default function AboutPage() {
       <section className="py-16 bg-violet-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="bg-gradient-to-r from-violet-700 to-purple-600 rounded-3xl p-12 shadow-2xl reveal-scale">
-            <h2 className="text-3xl font-bold text-white mb-4">Ready to Begin Your Journey?</h2>
-            <p className="text-white/80 mb-8 max-w-lg mx-auto">Join over 1,200 individuals who have transformed their image and elevated their lives with us.</p>
+            <h2 className="text-3xl font-bold text-white mb-4">{about.ctaTitle}</h2>
+            <p className="text-white/80 mb-8 max-w-lg mx-auto">{about.ctaText}</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a href="https://wa.me/2348037269408?text=Hi%20Chinenye%2C%20I%20would%20like%20to%20register%20for%20a%20programme." target="_blank" rel="noopener noreferrer" className="bg-white text-violet-700 font-bold px-8 py-3.5 rounded-full hover:shadow-lg transition-all">Register via WhatsApp</a>
               <Link href="/contact" className="border-2 border-white/50 text-white font-semibold px-8 py-3.5 rounded-full hover:border-white transition-all">✉ Contact Us</Link>

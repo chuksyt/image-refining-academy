@@ -1,4 +1,5 @@
 export interface Intake {
+  id: string
   courseKey: string
   courseName: string
   date: string
@@ -14,6 +15,7 @@ export interface Intake {
 
 export const INTAKES: Intake[] = [
   {
+    id: 'children-etiquette-1',
     courseKey: 'children-etiquette',
     courseName: "Children's Etiquette Programme",
     date: 'July 14, 2026',
@@ -26,6 +28,7 @@ export const INTAKES: Intake[] = [
     category: 'children',
   },
   {
+    id: 'teen-finishing-1',
     courseKey: 'teen-finishing',
     courseName: 'Teen Finishing School',
     date: 'July 21, 2026',
@@ -38,6 +41,7 @@ export const INTAKES: Intake[] = [
     category: 'teen',
   },
   {
+    id: 'corporate-etiquette-1',
     courseKey: 'corporate-etiquette',
     courseName: 'Corporate Etiquette & Professional Development',
     date: 'August 4, 2026',
@@ -50,6 +54,7 @@ export const INTAKES: Intake[] = [
     category: 'adult',
   },
   {
+    id: 'dining-etiquette-1',
     courseKey: 'dining-etiquette',
     courseName: 'Dining Etiquette Masterclass',
     date: 'August 9, 2026',
@@ -62,6 +67,7 @@ export const INTAKES: Intake[] = [
     category: 'adult',
   },
   {
+    id: 'personal-branding-1',
     courseKey: 'personal-branding',
     courseName: 'Personal Branding & Image Consulting',
     date: 'August 18, 2026',
@@ -74,6 +80,7 @@ export const INTAKES: Intake[] = [
     category: 'adult',
   },
   {
+    id: 'online-certification-1',
     courseKey: 'online-certification',
     courseName: 'Online Certification Programme',
     date: 'Rolling Enrollment',

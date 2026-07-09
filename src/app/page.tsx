@@ -7,6 +7,8 @@ import Newsletter from '@/components/Newsletter'
 import IntakeCalendar from '@/components/IntakeCalendar'
 import { COURSES } from '@/lib/courses'
 import { BLOG_POSTS } from '@/lib/blog'
+import { SEED_CONTENT } from '@/lib/content'
+import { useLiveData } from '@/lib/useLiveData'
 
 function useReveal() {
   useEffect(() => {
@@ -97,8 +99,13 @@ export default function Home() {
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize) }
   }, [])
 
-  const featuredCourses = COURSES.slice(0, 3)
-  const recentPosts = BLOG_POSTS.slice(0, 3)
+  // Live, director-editable content (seed renders first, then swaps in).
+  const courses = useLiveData('/api/courses', 'courses', COURSES)
+  const posts = useLiveData('/api/blog', 'posts', BLOG_POSTS)
+  const content = useLiveData('/api/content', 'content', SEED_CONTENT)
+  const featuredCourses = courses.slice(0, 3)
+  const recentPosts = posts.slice(0, 3)
+  const home = content.home
 
   return (
     <>
@@ -114,18 +121,18 @@ export default function Home() {
           <div>
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
               <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-              <span className="text-white/90 text-sm">Welcome to Image Refining Academy</span>
+              <span className="text-white/90 text-sm">{home.heroBadge}</span>
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Refine Your Image.<br />
+              {home.heroTitleLine1}<br />
               <em className="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">
-                Elevate Your Life.
+                {home.heroTitleLine2}
               </em>
             </h1>
 
             <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-              World-class etiquette education for children, teens, and adults. We empower you to present your best self — with grace, confidence, and timeless elegance.
+              {home.heroSubtitle}
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
@@ -138,7 +145,7 @@ export default function Home() {
             </div>
 
             <div className="flex gap-8">
-              {[{ n: 500, suffix: '+', label: 'Students Trained' }, { n: 100, suffix: '+', label: 'Teens Trained Free' }, { n: 6, suffix: '+', label: 'Years of Impact' }].map(s => (
+              {home.stats.map(s => (
                 <div key={s.label}>
                   <div className="text-3xl font-bold text-white"><Counter target={s.n} />{s.suffix}</div>
                   <div className="text-white/60 text-sm mt-1">{s.label}</div>

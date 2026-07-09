@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { BLOG_POSTS, CATEGORIES } from '@/lib/blog'
+import { deriveCategories } from '@/lib/blog'
+import { getAllPosts } from '@/lib/blog-store'
+
+// Posts are stored in Blob and edited live, so render on demand.
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Blog & Articles — Image Refining Academy',
@@ -24,8 +28,10 @@ export default function BlogPage({
 async function BlogContent({ searchParamsPromise }: { searchParamsPromise: Promise<{ category?: string }> }) {
   const { category } = await searchParamsPromise
   const activeCategory = category || 'All'
-  const featured = BLOG_POSTS.find(p => p.featured)
-  const posts = BLOG_POSTS.filter(p =>
+  const allPosts = await getAllPosts()
+  const CATEGORIES = deriveCategories(allPosts)
+  const featured = allPosts.find(p => p.featured)
+  const posts = allPosts.filter(p =>
     (activeCategory === 'All' || p.category === activeCategory) && !p.featured
   )
 

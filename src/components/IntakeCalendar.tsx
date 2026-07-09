@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { INTAKES } from '@/lib/intakes'
+import { useLiveData } from '@/lib/useLiveData'
 import EnrollModal from './EnrollModal'
 
 const categoryColors: Record<string, string> = {
@@ -28,12 +29,13 @@ function SpotBar({ total, left }: { total: number; left: number }) {
 
 export default function IntakeCalendar() {
   const [enrollKey, setEnrollKey] = useState<string | null>(null)
+  const intakes = useLiveData('/api/events', 'intakes', INTAKES)
 
   return (
     <>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {INTAKES.map(intake => (
-          <div key={intake.courseKey} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow p-6 flex flex-col">
+        {intakes.map(intake => (
+          <div key={intake.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow p-6 flex flex-col">
             {/* Category badge */}
             <div className="flex items-center justify-between mb-4">
               <span className={`text-xs font-semibold px-3 py-1 rounded-full ${categoryColors[intake.category]}`}>

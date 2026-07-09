@@ -41,6 +41,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import EnrollModal from '@/components/EnrollModal'
 import { COURSES } from '@/lib/courses'
+import { useLiveData } from '@/lib/useLiveData'
 
 type Filter = 'all' | 'children' | 'teen' | 'adult' | 'online'
 
@@ -67,7 +68,8 @@ export default function CoursesPage() {
     return () => obs.disconnect()
   }, [])
 
-  const filtered = COURSES.filter(c => filter === 'all' || c.category === filter)
+  const courses = useLiveData('/api/courses', 'courses', COURSES)
+  const filtered = courses.filter(c => filter === 'all' || c.category === filter)
   const tabs: { key: Filter; label: string }[] = [
     { key: 'all',      label: 'All Courses' },
     { key: 'children', label: 'Children' },
