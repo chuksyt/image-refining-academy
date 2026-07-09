@@ -26,6 +26,12 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
       return { ...prev, home: { ...prev.home, stats } }
     })
   }
+  function setImpactStat(i: number, patch: Partial<SiteContent['home']['impactStats'][number]>) {
+    setC(prev => {
+      const impactStats = prev.home.impactStats.map((s, idx) => (idx === i ? { ...s, ...patch } : s))
+      return { ...prev, home: { ...prev.home, impactStats } }
+    })
+  }
 
   type AValue = SiteContent['about']['values'][number]
   type AMilestone = SiteContent['about']['milestones'][number]
@@ -67,13 +73,26 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
         <div><label className={label}>Subtitle</label><textarea value={c.home.heroSubtitle} onChange={e => setHome('heroSubtitle', e.target.value)} rows={3} className={inputCls} /></div>
 
         <div>
-          <label className={label}>Stats</label>
+          <label className={label}>Hero stats <span className="text-gray-400 font-normal">(the three next to the founder photo)</span></label>
           <div className="space-y-2">
             {c.home.stats.map((s, i) => (
               <div key={i} className="grid grid-cols-[90px_70px_1fr] gap-2">
                 <input value={s.n} onChange={e => setStat(i, { n: Number(e.target.value) || 0 })} inputMode="numeric" placeholder="Number" className={inputCls} />
                 <input value={s.suffix} onChange={e => setStat(i, { suffix: e.target.value })} placeholder="+" className={inputCls} />
                 <input value={s.label} onChange={e => setStat(i, { label: e.target.value })} placeholder="Label" className={inputCls} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <label className={label}>Impact band stats <span className="text-gray-400 font-normal">(the purple band lower down the homepage)</span></label>
+          <div className="space-y-2">
+            {c.home.impactStats.map((s, i) => (
+              <div key={i} className="grid grid-cols-[90px_70px_1fr] gap-2">
+                <input value={s.n} onChange={e => setImpactStat(i, { n: Number(e.target.value) || 0 })} inputMode="numeric" placeholder="Number" className={inputCls} />
+                <input value={s.suffix} onChange={e => setImpactStat(i, { suffix: e.target.value })} placeholder="+ / % / blank" className={inputCls} />
+                <input value={s.label} onChange={e => setImpactStat(i, { label: e.target.value })} placeholder="Label" className={inputCls} />
               </div>
             ))}
           </div>

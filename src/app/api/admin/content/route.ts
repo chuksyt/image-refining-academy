@@ -12,16 +12,16 @@ function parseContent(body: unknown): SiteContent {
   const home = (b.home ?? {}) as Record<string, unknown>
   const about = (b.about ?? {}) as Record<string, unknown>
 
-  const stats: HomeStat[] = Array.isArray(home.stats)
-    ? home.stats.map(s => {
-        const o = s as Record<string, unknown>
-        return {
-          n: Number(o.n) || 0,
-          suffix: str(o.suffix),
-          label: str(o.label),
-        }
-      })
-    : SEED_CONTENT.home.stats
+  const parseStats = (val: unknown, fallback: HomeStat[]): HomeStat[] =>
+    Array.isArray(val)
+      ? val.map(s => {
+          const o = s as Record<string, unknown>
+          return { n: Number(o.n) || 0, suffix: str(o.suffix), label: str(o.label) }
+        })
+      : fallback
+
+  const stats = parseStats(home.stats, SEED_CONTENT.home.stats)
+  const impactStats = parseStats(home.impactStats, SEED_CONTENT.home.impactStats)
 
   const storyParagraphs = Array.isArray(about.storyParagraphs)
     ? about.storyParagraphs.map(p => str(p)).filter(p => p.trim() !== '')
@@ -48,6 +48,7 @@ function parseContent(body: unknown): SiteContent {
       heroTitleLine2: str(home.heroTitleLine2, SEED_CONTENT.home.heroTitleLine2),
       heroSubtitle: str(home.heroSubtitle, SEED_CONTENT.home.heroSubtitle),
       stats,
+      impactStats,
     },
     about: {
       heroTitle: str(about.heroTitle, SEED_CONTENT.about.heroTitle),

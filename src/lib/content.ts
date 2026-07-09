@@ -24,6 +24,7 @@ export interface SiteContent {
     heroTitleLine2: string // highlighted second line
     heroSubtitle: string
     stats: HomeStat[]
+    impactStats: HomeStat[]
   }
   about: {
     heroTitle: string
@@ -48,6 +49,12 @@ export const SEED_CONTENT: SiteContent = {
       { n: 500, suffix: '+', label: 'Students Trained' },
       { n: 100, suffix: '+', label: 'Teens Trained Free' },
       { n: 6, suffix: '+', label: 'Years of Impact' },
+    ],
+    impactStats: [
+      { n: 500, suffix: '+', label: 'Students Trained' },
+      { n: 6, suffix: '+', label: 'Years of Excellence' },
+      { n: 6, suffix: '', label: 'Signature Courses' },
+      { n: 90, suffix: '%', label: 'Student Satisfaction' },
     ],
   },
   about: {

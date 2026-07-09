@@ -267,10 +267,10 @@ export default function Home() {
       {/* ── Stats ── */}
       <section className="py-16 bg-gradient-to-r from-violet-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          {[{ n:500,s:'+',l:'Students Trained'},{n:6,s:'+',l:'Years of Excellence'},{n:6,s:'',l:'Signature Courses'},{n:90,s:'%',l:'Student Satisfaction'}].map(st => (
-            <div key={st.l} className="reveal">
-              <div className="text-4xl font-bold text-white mb-1"><Counter target={st.n} />{st.s}</div>
-              <div className="text-white/80 text-sm">{st.l}</div>
+          {home.impactStats.map((st, i) => (
+            <div key={`${st.label}-${i}`} className="reveal">
+              <div className="text-4xl font-bold text-white mb-1"><Counter target={st.n} />{st.suffix}</div>
+              <div className="text-white/80 text-sm">{st.label}</div>
             </div>
           ))}
         </div>
