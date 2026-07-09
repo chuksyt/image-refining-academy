@@ -11,6 +11,8 @@ export default function GalleryPage() {
   const [filter, setFilter] = useState<Cat>('all')
   const [lightbox, setLightbox] = useState<number | null>(null)
   const images = useLiveData('/api/gallery', 'items', SEED_GALLERY)
+  const filtered = images.filter(img => filter === 'all' || img.category === filter)
+  const filteredCount = filtered.length
 
   useEffect(() => {
     const els = document.querySelectorAll('.reveal,.stagger')
@@ -25,15 +27,14 @@ export default function GalleryPage() {
     const onKey = (e: KeyboardEvent) => {
       if (lightbox === null) return
       if (e.key === 'Escape') setLightbox(null)
-      if (e.key === 'ArrowLeft') setLightbox(i => i !== null ? (i - 1 + filtered.length) % filtered.length : null)
-      if (e.key === 'ArrowRight') setLightbox(i => i !== null ? (i + 1) % filtered.length : null)
+      if (e.key === 'ArrowLeft') setLightbox(i => i !== null ? (i - 1 + filteredCount) % filteredCount : null)
+      if (e.key === 'ArrowRight') setLightbox(i => i !== null ? (i + 1) % filteredCount : null)
     }
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = lightbox !== null ? 'hidden' : ''
     return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
-  }, [lightbox]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [lightbox, filteredCount])
 
-  const filtered = images.filter(img => filter === 'all' || img.category === filter)
   const tabs: { key: Cat; label: string }[] = [
     { key: 'all',       label: 'All' },
     { key: 'workshop',  label: 'Workshop' },

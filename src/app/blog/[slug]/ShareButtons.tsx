@@ -5,6 +5,8 @@ export default function ShareButtons({ title }: { title: string }) {
   const [url, setUrl] = useState('')
 
   useEffect(() => {
+    // Read the browser-only current URL after mount (unavailable during SSR).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setUrl(window.location.href)
   }, [])
 
