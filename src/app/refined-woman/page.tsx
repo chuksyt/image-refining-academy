@@ -115,9 +115,7 @@ export default function RefinedWomanPage() {
             {/* price + CTA */}
             <div className="flex flex-wrap items-center gap-6">
               <div>
-                <div className="text-yellow-300 font-bold text-4xl">₦8,000</div>
-                <div className="text-yellow-400 text-xs font-semibold mt-0.5">Early Bird — ends July 9, 2026</div>
-                <div className="text-white/40 text-xs mt-0.5">₦10,000 after early bird</div>
+                <div className="text-yellow-300 font-bold text-4xl">₦10,000</div>
               </div>
               <a
                 href="/refined-woman-form.html"
@@ -215,7 +213,7 @@ export default function RefinedWomanPage() {
               { icon: '📅', label: 'Date', value: '16th – 19th July 2026' },
               { icon: '🕖', label: 'Time', value: '7:00 PM – 8:00 PM WAT' },
               { icon: '📲', label: 'Platform', value: 'Telegram (Live + Recordings)' },
-              { icon: '💰', label: 'Fee', value: '₦8,000 Early Bird (until July 9)' },
+              { icon: '💰', label: 'Fee', value: '₦10,000' },
             ].map(d => (
               <div key={d.label} className="bg-white/10 border border-white/20 rounded-2xl p-6">
                 <div className="text-3xl mb-2">{d.icon}</div>
@@ -248,7 +246,7 @@ export default function RefinedWomanPage() {
               <div className="flex justify-between"><span className="text-gray-500">Bank</span><span className="font-semibold">Zenith Bank PLC</span></div>
               <div className="flex justify-between"><span className="text-gray-500">Account Name</span><span className="font-semibold">Image Refining Academy Ltd</span></div>
               <div className="flex justify-between items-center"><span className="text-gray-500">Account Number</span><span className="font-bold text-purple-700 text-base flex items-center">1224596762<CopyButton value="1224596762" label="account number" /></span></div>
-              <div className="flex justify-between"><span className="text-gray-500">Amount</span><span className="font-bold text-purple-700">₦8,000 <span className="text-gray-400 text-xs font-normal">(Early Bird until July 9)</span></span></div>
+              <div className="flex justify-between"><span className="text-gray-500">Amount</span><span className="font-bold text-purple-700">₦10,000</span></div>
             </div>
             <div className="mt-4 pt-4 border-t border-purple-200 text-sm text-green-700 flex items-start gap-2">
               <span>📲</span>

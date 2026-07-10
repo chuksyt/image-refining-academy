@@ -229,9 +229,7 @@ export default function Home() {
 
               {/* Price + CTA */}
               <div className="flex-shrink-0 text-center">
-                <div className="text-yellow-300 font-bold text-4xl mb-0.5">₦8,000</div>
-                <div className="text-yellow-400 text-xs font-semibold mb-0.5">Early Bird — ends July 9</div>
-                <div className="text-white/40 text-[11px] mb-6">(₦10,000 after)</div>
+                <div className="text-yellow-300 font-bold text-4xl mb-6">₦10,000</div>
                 <Link href="/refined-woman" className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-yellow-500/30 hover:-translate-y-0.5 transition-all whitespace-nowrap">
                   Learn More & Register →
                 </Link>

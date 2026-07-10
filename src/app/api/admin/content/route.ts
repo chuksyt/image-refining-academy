@@ -63,6 +63,32 @@ function parseContent(body: unknown): SiteContent {
   }
 }
 
+/**
+ * Guard against accidental junk (e.g. a stray keystroke saved as a one-letter
+ * hero title). Throws with a human-readable message the editor surfaces; the
+ * PUT handler turns it into a 400 so nothing is written.
+ */
+function validateContent(c: SiteContent): void {
+  const problems: string[] = []
+  const minLen = (name: string, val: string, min: number) => {
+    if (val.trim().length < min) problems.push(`${name} must be at least ${min} characters.`)
+  }
+
+  minLen('Homepage badge', c.home.heroBadge, 3)
+  minLen('Headline line 1', c.home.heroTitleLine1, 3)
+  minLen('Headline line 2', c.home.heroTitleLine2, 3)
+  minLen('Hero subtitle', c.home.heroSubtitle, 10)
+
+  if (c.home.stats.length < 1) problems.push('Add at least one hero stat.')
+  c.home.stats.forEach((s, i) => {
+    if (s.label.trim() === '') problems.push(`Hero stat ${i + 1} needs a label.`)
+  })
+
+  minLen('About hero title', c.about.heroTitle, 2)
+
+  if (problems.length) throw new Error(problems.join(' '))
+}
+
 export async function GET() {
   const unauth = await requireAuth()
   if (unauth) return unauth
@@ -80,6 +106,7 @@ export async function PUT(req: NextRequest) {
   }
   try {
     const content = parseContent(payload.content)
+    validateContent(content)
     await saveSiteContent(content)
     refresh('/', '/about')
     return NextResponse.json({ content })

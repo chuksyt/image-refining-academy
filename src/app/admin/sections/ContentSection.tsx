@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import type { SiteContent } from '@/lib/content'
+import { SEED_CONTENT, type SiteContent } from '@/lib/content'
 
 const inputCls =
   'w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 text-sm focus:border-violet-500 focus:ring-2 focus:ring-violet-200 outline-none'
@@ -13,6 +13,17 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
+  const [confirmReset, setConfirmReset] = useState(false)
+
+  // Load the original defaults back into the form (non-destructive until the
+  // editor clicks Save & publish). Two-click confirm avoids accidental resets.
+  function resetToDefaults() {
+    if (!confirmReset) { setConfirmReset(true); return }
+    setC(structuredClone(SEED_CONTENT))
+    setConfirmReset(false)
+    setError(null)
+    setNotice('Defaults loaded — review the fields, then click Save & publish to make them live.')
+  }
 
   function setHome<K extends keyof SiteContent['home']>(k: K, v: SiteContent['home'][K]) {
     setC(prev => ({ ...prev, home: { ...prev.home, [k]: v } }))
@@ -157,7 +168,20 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
       {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
       {notice && <p className="text-sm text-green-700 bg-green-50 rounded-lg px-3 py-2">{notice}</p>}
 
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={resetToDefaults}
+          onBlur={() => setConfirmReset(false)}
+          disabled={saving}
+          className={`text-sm font-medium px-4 py-2.5 rounded-xl border transition-all disabled:opacity-50 ${
+            confirmReset
+              ? 'border-red-300 text-red-700 bg-red-50 hover:bg-red-100'
+              : 'border-gray-300 text-gray-600 hover:bg-gray-50'
+          }`}
+        >
+          {confirmReset ? 'Click again to confirm reset' : '↺ Reset to defaults'}
+        </button>
         <button onClick={save} disabled={saving} className="bg-gradient-to-r from-violet-700 to-purple-600 text-white font-bold px-8 py-2.5 rounded-xl hover:shadow-lg transition-all disabled:opacity-50">
           {saving ? 'Saving…' : 'Save & publish'}
         </button>
