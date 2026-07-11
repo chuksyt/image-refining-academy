@@ -41,6 +41,109 @@ function Counter({ target }: { target: number }) {
   return <span ref={ref}>0</span>
 }
 
+function GallerySection({ slides }: { slides: { src: string; caption: string }[] }) {
+  const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const count = slides.length
+
+  const go = (n: number) => setIndex(((n % count) + count) % count)
+
+  useEffect(() => {
+    if (paused || count <= 1) return
+    const t = setInterval(() => setIndex(i => (i + 1) % count), 1500)
+    return () => clearInterval(t)
+  }, [paused, count])
+
+  return (
+    <section className="relative py-24 overflow-hidden bg-gray-900">
+      {/* Faded, blurred full-section backdrop that tracks the current slide */}
+      <div className="absolute inset-0" aria-hidden>
+        {slides.map((s, i) => (
+          <Image
+            key={s.src}
+            src={s.src}
+            alt=""
+            fill
+            sizes="100vw"
+            className={`object-cover scale-110 blur-xl transition-opacity duration-700 ${i === index ? 'opacity-100' : 'opacity-0'}`}
+            priority={i === 0}
+          />
+        ))}
+        {/* Soften the backdrop so foreground text stays readable */}
+        <div className="absolute inset-0 bg-white/35" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div className="text-center mb-14 reveal">
+          <div className="inline-flex items-center gap-2 text-violet-600 font-semibold text-sm mb-3">🖼 Gallery</div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Moments of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Elegance</span></h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
+        </div>
+
+        <div
+          className="reveal relative max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-900"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          aria-roledescription="carousel"
+        >
+          <div className="relative aspect-[16/10] sm:aspect-[16/9]">
+            {slides.map((s, i) => (
+              <div
+                key={s.src}
+                className={`absolute inset-0 transition-opacity duration-700 ${i === index ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                aria-hidden={i !== index}
+              >
+                <Image
+                  src={s.src}
+                  alt={s.caption}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  className="object-cover"
+                  priority={i === 0}
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 pt-16">
+                  <span className="text-white text-lg font-medium">{s.caption}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Prev / Next */}
+          <button
+            onClick={() => go(index - 1)}
+            aria-label="Previous photo"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/25 hover:bg-white/40 backdrop-blur text-white text-xl flex items-center justify-center transition-colors"
+          >‹</button>
+          <button
+            onClick={() => go(index + 1)}
+            aria-label="Next photo"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/25 hover:bg-white/40 backdrop-blur text-white text-xl flex items-center justify-center transition-colors"
+          >›</button>
+
+          {/* Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {slides.map((s, i) => (
+              <button
+                key={s.src}
+                onClick={() => go(i)}
+                aria-label={`Go to photo ${i + 1}`}
+                aria-current={i === index}
+                className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-white' : 'w-2 bg-white/50 hover:bg-white/80'}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center mt-10 reveal">
+          <Link href="/gallery" className="inline-flex items-center gap-2 border-2 border-violet-600 text-violet-600 font-semibold px-8 py-3.5 rounded-full bg-white/60 hover:bg-violet-600 hover:text-white transition-all">
+            View Full Gallery →
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const features = [
   { icon: '👶', title: "Children's Etiquette",  desc: "Age-appropriate social skills training that builds a lifelong foundation of grace and good manners for children ages 6–12." },
   { icon: '🎓', title: 'Teen Finishing School',   desc: 'Empowering teenagers with the poise, communication skills, and social awareness they need to thrive in every setting.' },
@@ -56,10 +159,14 @@ const testimonials = [
   { quote: "Your training has been a game changer for me. From the very first day to the end it was amazing — the lessons on etiquette, respect, manners, and protocol have been invaluable. I am grateful for the tools and insights you shared to help me build my self-confidence. You have empowered me to believe in myself and my abilities. Thank you ma.", name: 'Training Participant', role: 'Etiquette & Personal Development Graduate', avatar: 'https://api.dicebear.com/9.x/avataaars/svg?seed=TrainingParticipant&backgroundColor=c0aede' },
 ]
 
+// Landscape-orientation photos only, so the slideshow frame stays filled.
 const gallery = [
-  { src: '/gallery/workshop-1.jpg', caption: 'Etiquette Workshop', tall: false },
-  { src: '/gallery/dining-1.jpg',   caption: 'Dining Etiquette',   tall: true },
-  { src: '/gallery/ushering-1.jpg', caption: 'Ushering & Protocol', tall: false },
+  { src: '/gallery/workshop-4.jpg', caption: 'Finishing School Session' },
+  { src: '/gallery/ushering-1.jpg', caption: 'Refined Ushers — Birthday Celebration' },
+  { src: '/gallery/workshop-6.jpg', caption: 'Etiquette & Poise Class' },
+  { src: '/gallery/workshop-5.jpg', caption: 'Interactive Training' },
+  { src: '/gallery/ushering-3.jpg', caption: 'Cultural Reception Ushers' },
+  { src: '/gallery/workshop-7.jpg', caption: 'Personal Refining Workshop' },
 ]
 
 const whyUs = [
@@ -409,32 +516,7 @@ export default function Home() {
       </section>
 
       {/* ── Gallery preview ── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14 reveal">
-            <div className="inline-flex items-center gap-2 text-violet-600 font-semibold text-sm mb-3">🖼 Gallery</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Moments of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Elegance</span></h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 stagger">
-            {gallery.map(g => (
-              <div key={g.caption} className={`img-zoom rounded-2xl overflow-hidden relative group ${g.tall ? 'row-span-2' : ''}`}>
-                <Image src={g.src} alt={g.caption} width={500} height={g.tall ? 700 : 350} className={`w-full object-cover ${g.tall ? 'h-full' : 'h-48'}`} />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="text-white text-sm font-medium">{g.caption}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10 reveal">
-            <Link href="/gallery" className="inline-flex items-center gap-2 border-2 border-violet-600 text-violet-600 font-semibold px-8 py-3.5 rounded-full hover:bg-violet-600 hover:text-white transition-all">
-              View Full Gallery →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <GallerySection slides={gallery} />
 
       {/* ── Intake Calendar (HIDDEN – restore when courses go live) ──
       <section className="py-24 bg-gray-50">
