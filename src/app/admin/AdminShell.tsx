@@ -12,6 +12,7 @@ import CoursesSection from './sections/CoursesSection'
 import EventsSection from './sections/EventsSection'
 import GallerySection from './sections/GallerySection'
 import ContentSection from './sections/ContentSection'
+import ThemeToggle from '@/components/ThemeToggle'
 
 type Tab = 'blog' | 'courses' | 'events' | 'gallery' | 'content'
 
@@ -49,18 +50,19 @@ export default function AdminShell({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-20">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div>
-            <h1 className="font-bold text-gray-900">Site Editor</h1>
-            <p className="text-xs text-gray-400">Image Refining Academy</p>
+            <h1 className="font-bold text-gray-900 dark:text-white">Site Editor</h1>
+            <p className="text-xs text-gray-400 dark:text-gray-500">Image Refining Academy</p>
           </div>
           <div className="flex items-center gap-3">
-            <Link href="/" target="_blank" className="text-sm text-violet-600 hover:text-violet-800 font-medium">
+            <ThemeToggle scrolled />
+            <Link href="/" target="_blank" className="text-sm text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 font-medium">
               View site ↗
             </Link>
-            <button onClick={logout} className="text-sm text-gray-500 hover:text-gray-800">
+            <button onClick={logout} className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200">
               Log out
             </button>
           </div>
@@ -73,8 +75,8 @@ export default function AdminShell({
               onClick={() => setTab(t.key)}
               className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                 tab === t.key
-                  ? 'border-violet-600 text-violet-700'
-                  : 'border-transparent text-gray-500 hover:text-gray-800'
+                  ? 'border-violet-600 text-violet-700 dark:text-violet-300'
+                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
               }`}
             >
               {t.label}
@@ -85,7 +87,7 @@ export default function AdminShell({
 
       {!writable && (
         <div className="max-w-6xl mx-auto px-6 pt-4">
-          <div className="bg-amber-50 border border-amber-200 text-amber-800 text-sm rounded-xl px-4 py-3">
+          <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300 text-sm rounded-xl px-4 py-3">
             <strong>Read-only:</strong> storage isn&apos;t configured, so changes can&apos;t be saved.
             Link a Vercel Blob store (<code className="font-mono">BLOB_READ_WRITE_TOKEN</code>) to enable saving in production.
           </div>

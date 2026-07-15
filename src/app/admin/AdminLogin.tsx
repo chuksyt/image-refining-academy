@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import ThemeToggle from '@/components/ThemeToggle'
 
 export default function AdminLogin({ configured }: { configured: boolean }) {
   const router = useRouter()
@@ -32,13 +33,16 @@ export default function AdminLogin({ configured }: { configured: boolean }) {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 via-violet-950 to-gray-950 px-6">
-      <div className="w-full max-w-sm bg-white rounded-3xl shadow-2xl p-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-1">Site Editor</h1>
-        <p className="text-gray-500 text-sm mb-6">Director access only.</p>
+    <main className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 via-violet-950 to-gray-950 px-6">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+      <div className="w-full max-w-sm bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Site Editor</h1>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">Director access only.</p>
 
         {!configured ? (
-          <div className="bg-amber-50 border border-amber-200 text-amber-800 text-sm rounded-xl p-4">
+          <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300 text-sm rounded-xl p-4">
             The editor isn&apos;t configured yet. Set the{' '}
             <code className="font-mono">BLOG_ADMIN_PASSWORD</code> environment
             variable to enable it.
@@ -46,7 +50,7 @@ export default function AdminLogin({ configured }: { configured: boolean }) {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Password
               </label>
               <input
@@ -54,11 +58,11 @@ export default function AdminLogin({ configured }: { configured: boolean }) {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 autoFocus
-                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-violet-500 focus:ring-2 focus:ring-violet-200 outline-none"
+                className="w-full rounded-xl border border-gray-300 dark:border-gray-700 px-4 py-3 text-gray-900 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-500 focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:focus:ring-violet-900/50 outline-none"
                 placeholder="Enter director password"
               />
             </div>
-            {error && <p className="text-sm text-red-600">{error}</p>}
+            {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
             <button
               type="submit"
               disabled={loading || !password}

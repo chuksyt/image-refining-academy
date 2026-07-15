@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation'
 import { SEED_CONTENT, type SiteContent } from '@/lib/content'
 
 const inputCls =
-  'w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 text-sm focus:border-violet-500 focus:ring-2 focus:ring-violet-200 outline-none'
-const label = 'block text-sm font-medium text-gray-700 mb-1'
+  'w-full rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 dark:placeholder-gray-500 text-sm focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:focus:ring-violet-900/50 outline-none'
+const label = 'block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
 
 export default function ContentSection({ initialContent }: { initialContent: SiteContent }) {
   const router = useRouter()
@@ -74,17 +74,17 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
   return (
     <div className="max-w-3xl space-y-8">
       {/* Home */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
-        <h2 className="font-bold text-gray-900">Homepage — Hero</h2>
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 space-y-4">
+        <h2 className="font-bold text-gray-900 dark:text-white">Homepage — Hero</h2>
         <div><label className={label}>Badge text</label><input value={c.home.heroBadge} onChange={e => setHome('heroBadge', e.target.value)} className={inputCls} /></div>
         <div className="grid sm:grid-cols-2 gap-4">
           <div><label className={label}>Headline line 1</label><input value={c.home.heroTitleLine1} onChange={e => setHome('heroTitleLine1', e.target.value)} className={inputCls} /></div>
-          <div><label className={label}>Headline line 2 <span className="text-gray-400 font-normal">(highlighted)</span></label><input value={c.home.heroTitleLine2} onChange={e => setHome('heroTitleLine2', e.target.value)} className={inputCls} /></div>
+          <div><label className={label}>Headline line 2 <span className="text-gray-400 dark:text-gray-500 font-normal">(highlighted)</span></label><input value={c.home.heroTitleLine2} onChange={e => setHome('heroTitleLine2', e.target.value)} className={inputCls} /></div>
         </div>
         <div><label className={label}>Subtitle</label><textarea value={c.home.heroSubtitle} onChange={e => setHome('heroSubtitle', e.target.value)} rows={3} className={inputCls} /></div>
 
         <div>
-          <label className={label}>Hero stats <span className="text-gray-400 font-normal">(the three next to the founder photo)</span></label>
+          <label className={label}>Hero stats <span className="text-gray-400 dark:text-gray-500 font-normal">(the three next to the founder photo)</span></label>
           <div className="space-y-2">
             {c.home.stats.map((s, i) => (
               <div key={i} className="grid grid-cols-[90px_70px_1fr] gap-2">
@@ -97,7 +97,7 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
         </div>
 
         <div>
-          <label className={label}>Impact band stats <span className="text-gray-400 font-normal">(the purple band lower down the homepage)</span></label>
+          <label className={label}>Impact band stats <span className="text-gray-400 dark:text-gray-500 font-normal">(the purple band lower down the homepage)</span></label>
           <div className="space-y-2">
             {c.home.impactStats.map((s, i) => (
               <div key={i} className="grid grid-cols-[90px_70px_1fr] gap-2">
@@ -111,21 +111,21 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
       </div>
 
       {/* About */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
-        <h2 className="font-bold text-gray-900">About page</h2>
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 space-y-4">
+        <h2 className="font-bold text-gray-900 dark:text-white">About page</h2>
         <div><label className={label}>Hero title</label><input value={c.about.heroTitle} onChange={e => setAbout('heroTitle', e.target.value)} className={inputCls} /></div>
         <div><label className={label}>Hero subtitle</label><textarea value={c.about.heroSubtitle} onChange={e => setAbout('heroSubtitle', e.target.value)} rows={2} className={inputCls} /></div>
         <div><label className={label}>Story heading</label><input value={c.about.storyHeading} onChange={e => setAbout('storyHeading', e.target.value)} className={inputCls} /></div>
         <div>
-          <label className={label}>Story paragraphs <span className="text-gray-400 font-normal">— separate with a blank line</span></label>
+          <label className={label}>Story paragraphs <span className="text-gray-400 dark:text-gray-500 font-normal">— separate with a blank line</span></label>
           <textarea value={c.about.storyParagraphs.join('\n\n')} onChange={e => setAbout('storyParagraphs', e.target.value.split(/\n\s*\n/))} rows={10} className={inputCls} />
         </div>
 
         {/* Core Values */}
-        <div className="pt-2 border-t border-gray-100">
+        <div className="pt-2 border-t border-gray-100 dark:border-gray-800">
           <div className="flex items-center justify-between mb-2">
             <label className={label + ' mb-0'}>Core Values</label>
-            <button onClick={addValue} className="text-sm font-medium text-violet-600 hover:text-violet-800">＋ Add value</button>
+            <button onClick={addValue} className="text-sm font-medium text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300">＋ Add value</button>
           </div>
           <div className="space-y-2">
             {c.about.values.map((v, i) => (
@@ -135,17 +135,17 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
                   <input value={v.title} onChange={e => setValue(i, { title: e.target.value })} placeholder="Title" className={inputCls} />
                   <textarea value={v.desc} onChange={e => setValue(i, { desc: e.target.value })} placeholder="Description" rows={2} className={inputCls} />
                 </div>
-                <button onClick={() => removeValue(i)} className="text-sm text-red-600 hover:text-red-800 pt-2">Remove</button>
+                <button onClick={() => removeValue(i)} className="text-sm text-red-600 dark:text-red-400 hover:text-red-800 pt-2">Remove</button>
               </div>
             ))}
           </div>
         </div>
 
         {/* Story of Impact (timeline) */}
-        <div className="pt-2 border-t border-gray-100">
+        <div className="pt-2 border-t border-gray-100 dark:border-gray-800">
           <div className="flex items-center justify-between mb-2">
             <label className={label + ' mb-0'}>Story of Impact (timeline)</label>
-            <button onClick={addMilestone} className="text-sm font-medium text-violet-600 hover:text-violet-800">＋ Add milestone</button>
+            <button onClick={addMilestone} className="text-sm font-medium text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300">＋ Add milestone</button>
           </div>
           <div className="space-y-2">
             {c.about.milestones.map((m, i) => (
@@ -155,7 +155,7 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
                   <input value={m.title} onChange={e => setMilestone(i, { title: e.target.value })} placeholder="Title" className={inputCls} />
                   <textarea value={m.desc} onChange={e => setMilestone(i, { desc: e.target.value })} placeholder="Description" rows={2} className={inputCls} />
                 </div>
-                <button onClick={() => removeMilestone(i)} className="text-sm text-red-600 hover:text-red-800 pt-2">Remove</button>
+                <button onClick={() => removeMilestone(i)} className="text-sm text-red-600 dark:text-red-400 hover:text-red-800 pt-2">Remove</button>
               </div>
             ))}
           </div>
@@ -165,8 +165,8 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
         <div><label className={label}>CTA text</label><textarea value={c.about.ctaText} onChange={e => setAbout('ctaText', e.target.value)} rows={2} className={inputCls} /></div>
       </div>
 
-      {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
-      {notice && <p className="text-sm text-green-700 bg-green-50 rounded-lg px-3 py-2">{notice}</p>}
+      {error && <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 rounded-lg px-3 py-2">{error}</p>}
+      {notice && <p className="text-sm text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-950/30 rounded-lg px-3 py-2">{notice}</p>}
 
       <div className="flex items-center justify-between gap-4">
         <button
@@ -176,8 +176,8 @@ export default function ContentSection({ initialContent }: { initialContent: Sit
           disabled={saving}
           className={`text-sm font-medium px-4 py-2.5 rounded-xl border transition-all disabled:opacity-50 ${
             confirmReset
-              ? 'border-red-300 text-red-700 bg-red-50 hover:bg-red-100'
-              : 'border-gray-300 text-gray-600 hover:bg-gray-50'
+              ? 'border-red-300 text-red-700 bg-red-50 hover:bg-red-100 dark:border-red-900 dark:text-red-300 dark:bg-red-950/30 dark:hover:bg-red-950/50'
+              : 'border-gray-300 text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800'
           }`}
         >
           {confirmReset ? 'Click again to confirm reset' : '↺ Reset to defaults'}
