@@ -89,9 +89,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500">
+        <div className="border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
           <span>&copy; {new Date().getFullYear()} Image Refining Academy. All rights reserved.</span>
-          <span>Designed with elegance for Chinenye Nmerole</span>
         </div>
       </div>
     </footer>
