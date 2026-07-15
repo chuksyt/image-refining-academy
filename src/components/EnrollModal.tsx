@@ -35,7 +35,7 @@ export default function EnrollModal({ courseKey, onClose }: Props) {
     const icons = { success: '✅', error: '❌', info: 'ℹ️' }
     const el = document.createElement('div')
     el.className = `toast ${type}`
-    el.innerHTML = `<span style="font-size:1.2rem">${icons[type]}</span><div><strong style="display:block;font-size:0.9rem;color:#111">${title}</strong><span style="font-size:0.8rem;color:#555">${message}</span></div>`
+    el.innerHTML = `<span style="font-size:1.2rem">${icons[type]}</span><div><strong style="display:block;font-size:0.9rem;color:inherit">${title}</strong><span style="font-size:0.8rem;opacity:0.7">${message}</span></div>`
     document.body.appendChild(el)
     requestAnimationFrame(() => el.classList.add('show'))
     setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400) }, 4500)
@@ -104,21 +104,21 @@ export default function EnrollModal({ courseKey, onClose }: Props) {
       className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
     >
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-8 relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
           ✕
         </button>
 
         <div className="text-center mb-6">
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-100 to-purple-100 flex items-center justify-center text-2xl mx-auto mb-3">
+          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-100 to-purple-100 dark:from-violet-950/50 dark:to-purple-950/50 flex items-center justify-center text-2xl mx-auto mb-3">
             🎓
           </div>
-          <h3 className="text-xl font-bold text-gray-900">Enroll in Course</h3>
-          <p className="text-sm text-gray-500 mt-1">{course.name}</p>
-          <p className="text-violet-600 font-bold text-lg mt-1">{course.priceDisplay}</p>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white">Enroll in Course</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{course.name}</p>
+          <p className="text-violet-600 dark:text-violet-400 font-bold text-lg mt-1">{course.priceDisplay}</p>
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
@@ -128,7 +128,7 @@ export default function EnrollModal({ courseKey, onClose }: Props) {
             { id: 'enroll-phone', label: 'Phone Number',     type: 'tel',   placeholder: '+234 803 726 9408' },
           ].map(f => (
             <div key={f.id}>
-              <label htmlFor={f.id} className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor={f.id} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 {f.label} <span className="text-red-500">*</span>
               </label>
               <input
@@ -136,7 +136,7 @@ export default function EnrollModal({ courseKey, onClose }: Props) {
                 type={f.type}
                 placeholder={f.placeholder}
                 required
-                className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500"
               />
             </div>
           ))}
@@ -147,7 +147,7 @@ export default function EnrollModal({ courseKey, onClose }: Props) {
           >
             🔒 Proceed to Payment
           </button>
-          <p className="text-center text-xs text-gray-400 flex items-center justify-center gap-1">
+          <p className="text-center text-xs text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1">
             🛡️ Secured by Paystack. Your payment is safe.
           </p>
         </form>

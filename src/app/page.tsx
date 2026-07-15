@@ -70,13 +70,13 @@ function GallerySection({ slides }: { slides: { src: string; caption: string }[]
           />
         ))}
         {/* Soften the backdrop so foreground text stays readable */}
-        <div className="absolute inset-0 bg-white/35" />
+        <div className="absolute inset-0 bg-white/35 dark:bg-black/55" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-14 reveal">
           <div className="inline-flex items-center gap-2 text-violet-600 font-semibold text-sm mb-3">🖼 Gallery</div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Moments of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Elegance</span></h2>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Moments of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Elegance</span></h2>
           <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
         </div>
 
@@ -135,7 +135,7 @@ function GallerySection({ slides }: { slides: { src: string; caption: string }[]
         </div>
 
         <div className="text-center mt-10 reveal">
-          <Link href="/gallery" className="inline-flex items-center gap-2 border-2 border-violet-600 text-violet-600 font-semibold px-8 py-3.5 rounded-full bg-white/60 hover:bg-violet-600 hover:text-white transition-all">
+          <Link href="/gallery" className="inline-flex items-center gap-2 border-2 border-violet-600 dark:border-violet-500 text-violet-600 dark:text-violet-300 font-semibold px-8 py-3.5 rounded-full bg-white/60 dark:bg-white/10 hover:bg-violet-600 hover:text-white transition-all">
             View Full Gallery →
           </Link>
         </div>
@@ -295,7 +295,7 @@ export default function Home() {
       </div>
 
       {/* ── Upcoming Event Spotlight ── */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#2D0050] via-[#4A0072] to-[#6B21A8] shadow-2xl reveal">
             {/* gold top bar */}
@@ -348,21 +348,21 @@ export default function Home() {
       </section>
 
       {/* ── What We Offer ── */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
             <div className="inline-flex items-center gap-2 text-violet-600 font-semibold text-sm mb-3">✨ What We Offer</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Transforming Lives Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Refined Etiquette</span></h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Transforming Lives Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Refined Etiquette</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto mb-4" />
-            <p className="text-gray-500 max-w-xl mx-auto">At Image Refining Academy, we go beyond rules and manners. We build character, confidence, and a commanding presence that opens doors in every area of life.</p>
+            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">At Image Refining Academy, we go beyond rules and manners. We build character, confidence, and a commanding presence that opens doors in every area of life.</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
             {features.map(f => (
-              <div key={f.title} className="bg-gray-50 rounded-2xl p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div key={f.title} className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                 <div className="text-4xl mb-4">{f.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{f.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{f.title}</h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -382,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* ── About snippet ── */}
-      <section className="py-24 bg-violet-50">
+      <section className="py-24 bg-violet-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
           <div className="reveal-left">
             <div className="relative">
@@ -394,9 +394,9 @@ export default function Home() {
                   className="w-full h-[480px] object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-5 shadow-lg text-center">
-                <div className="text-3xl font-bold text-violet-700 leading-none">6+</div>
-                <div className="text-gray-500 text-xs mt-1">Years Experience</div>
+              <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-lg text-center">
+                <div className="text-3xl font-bold text-violet-700 dark:text-violet-400 leading-none">6+</div>
+                <div className="text-gray-500 dark:text-gray-400 text-xs mt-1">Years Experience</div>
               </div>
               <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-br from-violet-200 to-purple-200 border-2 border-violet-300" />
             </div>
@@ -404,16 +404,16 @@ export default function Home() {
 
           <div className="reveal-right">
             <div className="text-violet-600 font-semibold text-sm mb-3">Meet the Director</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Driven by Passion for <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Polished Excellence</span></h2>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              <strong className="text-gray-900">Chinenye Juliet Nmerole</strong> is a Certified Etiquette and Personal Development Consultant, speaker, trainer and transformational coach passionate about helping people become the best version of themselves.
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Driven by Passion for <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Polished Excellence</span></h2>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+              <strong className="text-gray-900 dark:text-white">Chinenye Juliet Nmerole</strong> is a Certified Etiquette and Personal Development Consultant, speaker, trainer and transformational coach passionate about helping people become the best version of themselves.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
               As Founder of Image Refining Academy, she equips teenagers, women, young adults, schools, churches and professionals with the knowledge, character and practical life skills to thrive without compromising their values. She believes true refinement begins from within — through character, confidence, emotional intelligence and purpose.
             </p>
             <div className="flex flex-wrap gap-4 mb-8">
               {['Certified Etiquette Consultant','Transformational Coach','Speaker & Trainer'].map(tag => (
-                <div key={tag} className="flex items-center gap-2 text-violet-700 font-semibold text-sm">
+                <div key={tag} className="flex items-center gap-2 text-violet-700 dark:text-violet-400 font-semibold text-sm">
                   <i className="fa-solid fa-circle-check" /> {tag}
                 </div>
               ))}
@@ -488,25 +488,25 @@ export default function Home() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section className="py-24 bg-violet-50">
+      <section className="py-24 bg-violet-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
             <div className="inline-flex items-center gap-2 text-violet-600 font-semibold text-sm mb-3">💬 Testimonials</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Words From Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Graduates</span></h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Words From Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Graduates</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 stagger">
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
+              <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow">
                 <div className="text-yellow-400 text-lg mb-4">★★★★★</div>
-                <p className="text-gray-600 leading-relaxed text-sm mb-6 italic">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-6 italic">&ldquo;{t.quote}&rdquo;</p>
                 <div className="flex items-center gap-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={t.avatar} alt={t.name} width={44} height={44} className="rounded-full bg-violet-100" />
                   <div>
-                    <div className="font-bold text-gray-900 text-sm">{t.name}</div>
-                    <div className="text-gray-400 text-xs">{t.role}</div>
+                    <div className="font-bold text-gray-900 dark:text-white text-sm">{t.name}</div>
+                    <div className="text-gray-400 dark:text-gray-500 text-xs">{t.role}</div>
                   </div>
                 </div>
               </div>
@@ -533,18 +533,18 @@ export default function Home() {
       ── End Intake Calendar ── */}
 
       {/* ── Monthly Transformation Training ── */}
-      <section id="monthly-training" className="py-24 bg-gray-50">
+      <section id="monthly-training" className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
             <div className="inline-flex items-center gap-2 text-violet-600 font-semibold text-sm mb-3">📅 Monthly Programmes</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Monthly <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Transformation Training</span></h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Monthly <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Transformation Training</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto mb-4" />
-            <p className="text-gray-500 max-w-xl mx-auto">In-person and online. Every month, two dedicated sessions — one for teenagers, one for women. Limited slots available.</p>
+            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">In-person and online. Every month, two dedicated sessions — one for teenagers, one for women. Limited slots available.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto stagger">
             {/* 2nd Saturday */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border-t-4 border-violet-600">
+            <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border-t-4 border-violet-600">
               <div className="relative h-52 overflow-hidden">
                 <Image src="/monthly-teen-flyer.jpg" alt="Teenagers Training flyer" width={600} height={400} className="w-full h-full object-cover object-top" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -555,16 +555,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">Teenagers Training</h3>
-                <div className="text-violet-600 text-xs font-semibold mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Teenagers Training</h3>
+                <div className="text-violet-600 dark:text-violet-400 text-xs font-semibold mb-4">
                   Session 1: 10:00AM – 12:00PM &nbsp;|&nbsp; Session 2: 1:00PM – 3:00PM
                 </div>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {['Confidence', 'Etiquette', 'Leadership', 'Purpose'].map(t => (
-                    <span key={t} className="bg-violet-50 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full">{t}</span>
+                    <span key={t} className="bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300 text-xs font-semibold px-3 py-1 rounded-full">{t}</span>
                   ))}
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
                   Equipping teenagers with the character, confidence and life skills they need to discover their purpose and navigate today&apos;s world with grace and leadership.
                 </p>
                 <a
@@ -578,7 +578,7 @@ export default function Home() {
             </div>
 
             {/* 4th Saturday */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border-t-4 border-purple-500">
+            <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border-t-4 border-purple-500">
               <div className="relative h-52 overflow-hidden">
                 <Image src="/monthly-women-flyer.jpg" alt="Women's Training flyer" width={600} height={400} className="w-full h-full object-cover object-top" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -589,16 +589,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">Women&apos;s Training</h3>
-                <div className="text-purple-600 text-xs font-semibold mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Women&apos;s Training</h3>
+                <div className="text-purple-600 dark:text-purple-400 text-xs font-semibold mb-4">
                   1:00PM – 3:00PM
                 </div>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {['Poise', 'Communication', 'Confidence', 'Social Etiquette', 'Personal Branding'].map(t => (
-                    <span key={t} className="bg-purple-50 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">{t}</span>
+                    <span key={t} className="bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 text-xs font-semibold px-3 py-1 rounded-full">{t}</span>
                   ))}
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
                   A safe and empowering space for women to build confidence, refine their presence, strengthen communication and grow into the best version of themselves.
                 </p>
                 <a
@@ -619,7 +619,7 @@ export default function Home() {
               { icon: '🔢', text: 'Limited Slots Monthly' },
               { icon: '💻', text: 'In-Person & Online' },
             ].map(f => (
-              <div key={f.text} className="flex items-center gap-2 text-gray-600 font-medium text-sm">
+              <div key={f.text} className="flex items-center gap-2 text-gray-600 dark:text-gray-300 font-medium text-sm">
                 <span className="text-xl">{f.icon}</span> {f.text}
               </div>
             ))}
@@ -628,12 +628,12 @@ export default function Home() {
       </section>
 
       {/* ── Blog preview ── */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div className="reveal">
               <div className="inline-flex items-center gap-2 text-violet-600 font-semibold text-sm mb-3">✍️ Latest Articles</div>
-              <h2 className="text-4xl font-bold text-gray-900">From Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Blog</span></h2>
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white">From Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Blog</span></h2>
             </div>
             <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 border-2 border-violet-600 text-violet-600 font-semibold px-6 py-2.5 rounded-full hover:bg-violet-600 hover:text-white transition-all text-sm">
               View All →
@@ -642,17 +642,17 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 stagger">
             {recentPosts.map(post => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden flex flex-col">
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden flex flex-col">
                 <div className="img-zoom h-48">
                   <Image src={post.image} alt={post.title} width={600} height={400} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <span className="text-violet-600 text-xs font-semibold mb-2">{post.category}</span>
-                  <h3 className="font-bold text-gray-900 text-lg mb-2 group-hover:text-violet-600 transition-colors flex-1">{post.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-gray-400 text-xs">{post.date}</span>
-                    <span className="text-violet-600 text-xs font-semibold">{post.readTime}</span>
+                  <h3 className="font-bold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors flex-1">{post.title}</h3>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                    <span className="text-gray-400 dark:text-gray-500 text-xs">{post.date}</span>
+                    <span className="text-violet-600 dark:text-violet-400 text-xs font-semibold">{post.readTime}</span>
                   </div>
                 </div>
               </Link>
@@ -668,7 +668,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-4xl mx-auto px-6 text-center reveal-scale">
           <div className="bg-gradient-to-r from-violet-700 to-purple-600 rounded-3xl p-12 shadow-2xl">
             <div className="inline-block bg-white/15 text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">Start Today</div>

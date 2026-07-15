@@ -14,8 +14,8 @@ export default function ShareButtons({ title }: { title: string }) {
   const twHref = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`
 
   return (
-    <div className="mt-12 pt-8 border-t border-gray-100 flex flex-wrap items-center gap-4">
-      <span className="text-gray-500 text-sm font-medium">Share this article:</span>
+    <div className="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-wrap items-center gap-4">
+      <span className="text-gray-500 dark:text-gray-400 text-sm font-medium">Share this article:</span>
       <a
         href={waHref}
         target="_blank" rel="noopener noreferrer"
@@ -27,7 +27,7 @@ export default function ShareButtons({ title }: { title: string }) {
       <a
         href={twHref}
         target="_blank" rel="noopener noreferrer"
-        className="flex items-center gap-2 bg-black text-white text-sm font-semibold px-4 py-2 rounded-full hover:opacity-80 transition-opacity"
+        className="flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black text-sm font-semibold px-4 py-2 rounded-full hover:opacity-80 transition-opacity"
       >
         𝕏 Share
       </a>

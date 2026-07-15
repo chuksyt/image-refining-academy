@@ -70,43 +70,43 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Content */}
       <article className="max-w-3xl mx-auto px-6 py-16">
-        <p className="text-xl text-gray-600 leading-relaxed mb-8 font-medium border-l-4 border-violet-500 pl-5">
+        <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8 font-medium border-l-4 border-violet-500 pl-5">
           {post.excerpt}
         </p>
         <div className="space-y-6">
           {post.content.map((para, i) => (
-            <p key={i} className="text-gray-700 leading-relaxed text-lg">{para}</p>
+            <p key={i} className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">{para}</p>
           ))}
         </div>
 
         <ShareButtons title={post.title} />
 
         {/* Author card */}
-        <div className="mt-10 bg-violet-50 rounded-2xl p-6 flex items-start gap-5">
+        <div className="mt-10 bg-violet-50 dark:bg-gray-900 rounded-2xl p-6 flex items-start gap-5">
           <Image src={post.authorAvatar} alt={post.author} width={60} height={60} className="rounded-full flex-shrink-0" />
           <div>
-            <div className="font-bold text-gray-900">{post.author}</div>
-            <div className="text-violet-600 text-sm mb-2">{post.authorRole}</div>
-            <p className="text-gray-600 text-sm leading-relaxed">Chinenye Nmerole is a distinguished etiquette consultant and image coach with over a decade of experience transforming individuals and organisations across Africa and beyond.</p>
+            <div className="font-bold text-gray-900 dark:text-white">{post.author}</div>
+            <div className="text-violet-600 dark:text-violet-400 text-sm mb-2">{post.authorRole}</div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Chinenye Nmerole is a distinguished etiquette consultant and image coach with over a decade of experience transforming individuals and organisations across Africa and beyond.</p>
           </div>
         </div>
       </article>
 
       {/* Related posts */}
       {related.length > 0 && (
-        <section className="bg-gray-50 py-16">
+        <section className="bg-gray-50 dark:bg-gray-900 py-16">
           <div className="max-w-7xl mx-auto px-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">More in {post.category}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">More in {post.category}</h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map(p => (
-                <Link key={p.slug} href={`/blog/${p.slug}`} className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                <Link key={p.slug} href={`/blog/${p.slug}`} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                   <div className="img-zoom h-44">
                     <Image src={p.image} alt={p.title} width={600} height={300} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
-                    <span className="text-violet-600 text-xs font-semibold">{p.category}</span>
-                    <h4 className="font-bold text-gray-900 mt-1 group-hover:text-violet-600 transition-colors">{p.title}</h4>
-                    <p className="text-gray-400 text-xs mt-2">{p.date} · {p.readTime}</p>
+                    <span className="text-violet-600 dark:text-violet-400 text-xs font-semibold">{p.category}</span>
+                    <h4 className="font-bold text-gray-900 dark:text-white mt-1 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">{p.title}</h4>
+                    <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">{p.date} · {p.readTime}</p>
                   </div>
                 </Link>
               ))}
@@ -116,7 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* CTA */}
-      <section className="bg-white py-16">
+      <section className="bg-white dark:bg-gray-950 py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <div className="bg-gradient-to-r from-violet-700 to-purple-600 rounded-3xl p-10 shadow-xl">
             <h3 className="text-2xl font-bold text-white mb-3">Ready to put this into practice?</h3>

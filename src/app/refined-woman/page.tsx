@@ -15,7 +15,7 @@ function CopyButton({ value, label }: { value: string; label?: string }) {
     <button
       onClick={copy}
       title={`Copy ${label ?? value}`}
-      className="inline-flex items-center gap-1.5 align-middle ml-2 bg-purple-100 hover:bg-purple-200 text-purple-700 text-xs font-semibold px-2.5 py-1 rounded-full transition-colors select-none"
+      className="inline-flex items-center gap-1.5 align-middle ml-2 bg-purple-100 hover:bg-purple-200 dark:bg-purple-900/40 dark:hover:bg-purple-900/60 text-purple-700 dark:text-purple-300 text-xs font-semibold px-2.5 py-1 rounded-full transition-colors select-none"
     >
       {copied ? (
         <>
@@ -156,14 +156,14 @@ export default function RefinedWomanPage() {
       </section>
 
       {/* ── ABOUT THE TRAINING ── */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center reveal">
-            <div className="text-violet-600 font-semibold text-sm mb-3">About This Training</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <div className="text-violet-600 dark:text-violet-400 font-semibold text-sm mb-3">About This Training</div>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
               A 4-Day <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Premium Transformation</span> Experience
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
               A premium 4-day transformation experience designed to help women build confidence, refine their image, discover purpose, communicate with influence, and lead with grace in today&apos;s world.
             </p>
           </div>
@@ -171,11 +171,11 @@ export default function RefinedWomanPage() {
       </section>
 
       {/* ── WHAT YOU WILL GAIN ── */}
-      <section className="py-20 bg-purple-50">
+      <section className="py-20 bg-purple-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
-            <div className="text-violet-600 font-semibold text-sm mb-3">What You Will Gain</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <div className="text-violet-600 dark:text-violet-400 font-semibold text-sm mb-3">What You Will Gain</div>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               7 Powerful Areas of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Transformation</span>
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
@@ -183,10 +183,10 @@ export default function RefinedWomanPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
             {gains.map(g => (
-              <div key={g.title} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-center">
+              <div key={g.title} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-center">
                 <div className="text-4xl mb-3">{g.icon}</div>
-                <h4 className="font-bold text-gray-900 text-base mb-2">{g.title}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">{g.desc}</p>
+                <h4 className="font-bold text-gray-900 dark:text-white text-base mb-2">{g.title}</h4>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{g.desc}</p>
               </div>
             ))}
             {/* Bonus card */}
@@ -226,29 +226,29 @@ export default function RefinedWomanPage() {
       </section>
 
       {/* ── REGISTER CTA ── */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-gray-950">
         <div className="max-w-3xl mx-auto px-6 text-center reveal">
-          <div className="text-violet-600 font-semibold text-sm mb-3">Ready to Transform?</div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-violet-600 dark:text-violet-400 font-semibold text-sm mb-3">Ready to Transform?</div>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Invest in Yourself.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">
               Become the Woman of Value and Impact.
             </span>
           </h2>
-          <p className="text-gray-500 mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-gray-500 dark:text-gray-400 mb-10 max-w-xl mx-auto leading-relaxed">
             Complete the registration form below and make your payment to secure your place. Your Telegram access details will be sent after payment confirmation.
           </p>
 
           {/* Payment reminder */}
-          <div className="bg-purple-50 border border-purple-200 rounded-2xl p-6 mb-10 text-left max-w-lg mx-auto">
-            <div className="text-purple-800 font-bold text-sm mb-3 uppercase tracking-wide">Payment Details</div>
-            <div className="space-y-2 text-sm text-gray-700">
-              <div className="flex justify-between"><span className="text-gray-500">Bank</span><span className="font-semibold">Zenith Bank PLC</span></div>
-              <div className="flex justify-between"><span className="text-gray-500">Account Name</span><span className="font-semibold">Image Refining Academy Ltd</span></div>
-              <div className="flex justify-between items-center"><span className="text-gray-500">Account Number</span><span className="font-bold text-purple-700 text-base flex items-center">1224596762<CopyButton value="1224596762" label="account number" /></span></div>
-              <div className="flex justify-between"><span className="text-gray-500">Amount</span><span className="font-bold text-purple-700">₦10,000</span></div>
+          <div className="bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-900 rounded-2xl p-6 mb-10 text-left max-w-lg mx-auto">
+            <div className="text-purple-800 dark:text-purple-300 font-bold text-sm mb-3 uppercase tracking-wide">Payment Details</div>
+            <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+              <div className="flex justify-between"><span className="text-gray-500 dark:text-gray-400">Bank</span><span className="font-semibold">Zenith Bank PLC</span></div>
+              <div className="flex justify-between"><span className="text-gray-500 dark:text-gray-400">Account Name</span><span className="font-semibold">Image Refining Academy Ltd</span></div>
+              <div className="flex justify-between items-center"><span className="text-gray-500 dark:text-gray-400">Account Number</span><span className="font-bold text-purple-700 dark:text-purple-300 text-base flex items-center">1224596762<CopyButton value="1224596762" label="account number" /></span></div>
+              <div className="flex justify-between"><span className="text-gray-500 dark:text-gray-400">Amount</span><span className="font-bold text-purple-700 dark:text-purple-300">₦10,000</span></div>
             </div>
-            <div className="mt-4 pt-4 border-t border-purple-200 text-sm text-green-700 flex items-start gap-2">
+            <div className="mt-4 pt-4 border-t border-purple-200 dark:border-purple-900 text-sm text-green-700 dark:text-green-400 flex items-start gap-2">
               <span>📲</span>
               <span>After payment, send your receipt via WhatsApp to <strong>+234 803 726 9408</strong><CopyButton value="+2348037269408" label="WhatsApp number" /> with your full name.</span>
             </div>
@@ -260,14 +260,14 @@ export default function RefinedWomanPage() {
           >
             Complete Registration Form →
           </a>
-          <p className="text-gray-400 text-xs mt-4">Your information is safe and will only be used for this training.</p>
+          <p className="text-gray-400 dark:text-gray-500 text-xs mt-4">Your information is safe and will only be used for this training.</p>
         </div>
       </section>
 
       {/* ── ABOUT THE TRAINER ── */}
-      <section className="py-20 bg-purple-50">
+      <section className="py-20 bg-purple-50 dark:bg-gray-900">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="bg-white rounded-3xl shadow-md overflow-hidden flex flex-col md:flex-row items-center gap-0 reveal">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-md overflow-hidden flex flex-col md:flex-row items-center gap-0 reveal">
             <div className="w-full md:w-64 h-64 md:h-auto flex-shrink-0">
               <Image
                 src="/chinenye.jpg"
@@ -277,14 +277,14 @@ export default function RefinedWomanPage() {
               />
             </div>
             <div className="p-8 md:p-10">
-              <div className="text-violet-600 font-semibold text-sm mb-2">Your Trainer</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Chinenye Juliet Nmerole</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-4">
+              <div className="text-violet-600 dark:text-violet-400 font-semibold text-sm mb-2">Your Trainer</div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Chinenye Juliet Nmerole</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
                 Certified Etiquette and Personal Development Consultant, speaker, and transformational coach. Founder of Image Refining Academy — dedicated to helping women rediscover their identity, build confidence, and lead with elegance and purpose.
               </p>
               <div className="flex flex-wrap gap-2">
                 {['Certified Etiquette Consultant', 'Transformational Coach', 'Speaker & Trainer'].map(tag => (
-                  <span key={tag} className="bg-violet-100 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full">{tag}</span>
+                  <span key={tag} className="bg-violet-100 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300 text-xs font-semibold px-3 py-1 rounded-full">{tag}</span>
                 ))}
               </div>
             </div>

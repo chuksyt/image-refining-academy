@@ -46,12 +46,12 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-950">
         <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
           {/* Info */}
           <div className="reveal-left">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Let&apos;s Start a <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Conversation</span></h2>
-            <p className="text-gray-600 leading-relaxed mb-10">Whether you have a question about our courses, want to enroll a group, or simply want to learn more about our programmes, our team is ready to assist you.</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Let&apos;s Start a <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Conversation</span></h2>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-10">Whether you have a question about our courses, want to enroll a group, or simply want to learn more about our programmes, our team is ready to assist you.</p>
 
             <div className="space-y-6 mb-10">
               {[
@@ -61,26 +61,26 @@ export default function ContactPage() {
                 { icon: 'fa-location-dot', label: 'Location', value: 'Nigeria (Online & In-Person)' },
               ].map(item => (
                 <div key={item.label} className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center flex-shrink-0">
-                    <i className={`fa-solid ${item.icon} text-violet-600`} />
+                  <div className="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-950/40 flex items-center justify-center flex-shrink-0">
+                    <i className={`fa-solid ${item.icon} text-violet-600 dark:text-violet-400`} />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 text-sm">{item.label}</div>
-                    <div className="text-gray-500 text-sm mt-0.5">{item.value}</div>
+                    <div className="font-semibold text-gray-900 dark:text-white text-sm">{item.label}</div>
+                    <div className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">{item.value}</div>
                   </div>
                 </div>
               ))}
             </div>
 
             <div>
-              <div className="font-semibold text-gray-900 mb-3 text-sm">Follow Us</div>
+              <div className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Follow Us</div>
               <div className="flex gap-3">
                 {[
                   { icon: 'facebook-f', href: 'https://facebook.com/chinenye.nmerole' },
                   { icon: 'instagram',  href: 'https://www.instagram.com/image_refining_academy/' },
                   { icon: 'tiktok',     href: 'https://www.tiktok.com/@chinenye.nmerole?lang=en' },
                 ].map(s => (
-                  <a key={s.icon} href={s.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-violet-500 hover:text-violet-600 transition-colors text-sm">
+                  <a key={s.icon} href={s.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:border-violet-500 hover:text-violet-600 transition-colors text-sm">
                     <i className={`fab fa-${s.icon}`} />
                   </a>
                 ))}
@@ -90,15 +90,15 @@ export default function ContactPage() {
 
           {/* Form */}
           <div className="reveal-right">
-            <div className="bg-gray-50 rounded-2xl p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Send Us a Message</h3>
 
               {status === 'sent' ? (
-                <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+                <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900 rounded-xl p-6 text-center">
                   <div className="text-3xl mb-2">✅</div>
-                  <h4 className="font-bold text-green-900 mb-1">Message Sent!</h4>
-                  <p className="text-green-700 text-sm">We&apos;ll get back to you within 24 hours.</p>
-                  <button onClick={() => setStatus('idle')} className="mt-4 text-sm text-green-700 underline">Send another message</button>
+                  <h4 className="font-bold text-green-900 dark:text-green-300 mb-1">Message Sent!</h4>
+                  <p className="text-green-700 dark:text-green-400 text-sm">We&apos;ll get back to you within 24 hours.</p>
+                  <button onClick={() => setStatus('idle')} className="mt-4 text-sm text-green-700 dark:text-green-400 underline">Send another message</button>
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
@@ -106,18 +106,18 @@ export default function ContactPage() {
                     {[{ name:'name', label:'Full Name', type:'text', placeholder:'Chidinma Okafor' },
                       { name:'email', label:'Email', type:'email', placeholder:'you@example.com' }].map(f => (
                       <div key={f.name}>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">{f.label} <span className="text-red-500">*</span></label>
-                        <input name={f.name} type={f.type} placeholder={f.placeholder} required className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{f.label} <span className="text-red-500">*</span></label>
+                        <input name={f.name} type={f.type} placeholder={f.placeholder} required className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500" />
                       </div>
                     ))}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                    <input name="phone" type="tel" placeholder="+234 803 726 9408" className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white" />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone</label>
+                    <input name="phone" type="tel" placeholder="+234 803 726 9408" className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Subject <span className="text-red-500">*</span></label>
-                    <select name="subject" required className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white text-gray-700">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subject <span className="text-red-500">*</span></label>
+                    <select name="subject" required className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
                       <option value="">Select a subject…</option>
                       <option>Course Enquiry</option>
                       <option>Group / Corporate Booking</option>
@@ -126,8 +126,8 @@ export default function ContactPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Message <span className="text-red-500">*</span></label>
-                    <textarea name="message" rows={5} placeholder="Tell us how we can help…" required className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none bg-white" />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message <span className="text-red-500">*</span></label>
+                    <textarea name="message" rows={5} placeholder="Tell us how we can help…" required className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500" />
                   </div>
                   {status === 'error' && (
                     <p className="text-red-500 text-sm">Something went wrong. Please try again or email us directly.</p>

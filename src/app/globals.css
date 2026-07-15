@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/*
+ * Dark mode is tri-state, driven by a `data-theme` attribute on <html>:
+ *   • no attribute      → follow the visitor's OS setting (prefers-color-scheme)
+ *   • data-theme="dark" → force dark, regardless of OS
+ *   • data-theme="light"→ force light, regardless of OS
+ * The attribute is set by the no-flash script in layout.tsx and the navbar toggle.
+ */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) { @slot; }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not([data-theme="light"], [data-theme="light"] *)) { @slot; }
+  }
+}
+
 :root {
   --pp: #7c3aed;
   --pm: #9333ea;
@@ -73,7 +87,7 @@ html { scroll-behavior: smooth; }
 .img-zoom:hover img { transform:scale(1.06); }
 
 /* Toast */
-.toast { position:fixed;bottom:1.5rem;right:1.5rem;background:white;border-radius:0.75rem;padding:1rem 1.25rem;box-shadow:0 10px 40px rgba(0,0,0,0.15);display:flex;align-items:flex-start;gap:0.75rem;max-width:360px;z-index:10000;transform:translateY(120%);transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.toast { position:fixed;bottom:1.5rem;right:1.5rem;background:white;color:#111827;border-radius:0.75rem;padding:1rem 1.25rem;box-shadow:0 10px 40px rgba(0,0,0,0.15);display:flex;align-items:flex-start;gap:0.75rem;max-width:360px;z-index:10000;transform:translateY(120%);transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
 .toast.show { transform:translateY(0); }
 .toast.success { border-left:4px solid #22c55e; }
 .toast.error   { border-left:4px solid #ef4444; }
@@ -94,3 +108,14 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar { width:6px; }
 ::-webkit-scrollbar-track { background:#f1f1f1; }
 ::-webkit-scrollbar-thumb { background:#9333ea;border-radius:3px; }
+
+/* Dark theme for plain-CSS bits (scrollbar, toast) — mirrors the tri-state above.
+   System dark applies unless explicitly forced light; data-theme="dark" always applies. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { color-scheme: dark; }
+  :root:not([data-theme="light"]) ::-webkit-scrollbar-track { background:#1f2937; }
+  :root:not([data-theme="light"]) .toast { background:#111827;color:#e5e7eb;box-shadow:0 10px 40px rgba(0,0,0,0.5); }
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="dark"] ::-webkit-scrollbar-track { background:#1f2937; }
+:root[data-theme="dark"] .toast { background:#111827;color:#e5e7eb;box-shadow:0 10px 40px rgba(0,0,0,0.5); }

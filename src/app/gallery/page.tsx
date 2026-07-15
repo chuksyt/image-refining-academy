@@ -59,10 +59,10 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10 reveal">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Moments of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Elegance</span></h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Moments of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Elegance</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
           </div>
 
@@ -70,7 +70,7 @@ export default function GalleryPage() {
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {tabs.map(t => (
               <button key={t.key} onClick={() => { setFilter(t.key); setLightbox(null) }}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${filter === t.key ? 'bg-gradient-to-r from-violet-600 to-purple-500 text-white shadow-lg shadow-violet-500/30' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${filter === t.key ? 'bg-gradient-to-r from-violet-600 to-purple-500 text-white shadow-lg shadow-violet-500/30' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}>
                 {t.label}
               </button>
             ))}

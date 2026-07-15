@@ -35,7 +35,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
           <div className="reveal-left">
             <div className="relative">
@@ -47,9 +47,9 @@ export default function AboutPage() {
                   className="w-full h-[500px] object-cover object-top"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-5 shadow-xl text-center">
-                <div className="text-3xl font-bold text-violet-700">6+</div>
-                <div className="text-gray-500 text-xs mt-1">Years Experience</div>
+              <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-xl text-center">
+                <div className="text-3xl font-bold text-violet-700 dark:text-violet-400">6+</div>
+                <div className="text-gray-500 dark:text-gray-400 text-xs mt-1">Years Experience</div>
               </div>
               <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-br from-violet-200 to-purple-200 border-2 border-violet-300" />
             </div>
@@ -57,17 +57,17 @@ export default function AboutPage() {
 
           <div className="reveal-right">
             <div className="text-violet-600 font-semibold text-sm mb-3">Our Story</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">{about.storyHeading}</span>
             </h2>
-            <div className="space-y-4 text-gray-600 leading-relaxed">
+            <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
               {about.storyParagraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
             <div className="flex flex-wrap gap-4 mt-8">
               {['Certified Etiquette Consultant','Transformational Coach','Speaker & Trainer'].map(tag => (
-                <div key={tag} className="flex items-center gap-2 text-violet-700 font-semibold text-sm">
+                <div key={tag} className="flex items-center gap-2 text-violet-700 dark:text-violet-400 font-semibold text-sm">
                   <i className="fa-solid fa-circle-check" /> {tag}
                 </div>
               ))}
@@ -77,19 +77,19 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-violet-50">
+      <section className="py-20 bg-violet-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
             <div className="text-violet-600 font-semibold text-sm mb-3">What Drives Us</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Values</span></h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Values</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
             {values.map(v => (
-              <div key={v.title} className="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+              <div key={v.title} className="bg-white dark:bg-gray-800 rounded-2xl p-7 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
                 <div className="text-4xl mb-4">{v.icon}</div>
-                <h4 className="font-bold text-gray-900 text-lg mb-2">{v.title}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
+                <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-2">{v.title}</h4>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -97,25 +97,25 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-gray-950">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14 reveal">
             <div className="text-violet-600 font-semibold text-sm mb-3">Our Journey</div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">A Story of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Impact</span></h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">A Story of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">Impact</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-violet-600 to-purple-500 rounded-full mx-auto" />
           </div>
 
           <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-violet-100" />
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-violet-100 dark:bg-violet-900/40" />
             <div className="space-y-10">
               {milestones.map((m, i) => (
                 <div key={i} className={`flex gap-8 items-start reveal`} style={{ transitionDelay: `${i * 0.1}s` }}>
                   <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-violet-600 to-purple-500 flex items-center justify-center text-white font-bold text-sm relative z-10">
                     {m.year}
                   </div>
-                  <div className="bg-gray-50 rounded-2xl p-6 flex-1">
-                    <h3 className="font-bold text-gray-900 text-lg mb-2">{m.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{m.desc}</p>
+                  <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 flex-1">
+                    <h3 className="font-bold text-gray-900 dark:text-white text-lg mb-2">{m.title}</h3>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{m.desc}</p>
                   </div>
                 </div>
               ))}
@@ -125,7 +125,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-violet-50">
+      <section className="py-16 bg-violet-50 dark:bg-gray-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="bg-gradient-to-r from-violet-700 to-purple-600 rounded-3xl p-12 shadow-2xl reveal-scale">
             <h2 className="text-3xl font-bold text-white mb-4">{about.ctaTitle}</h2>
