@@ -294,59 +294,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Upcoming Event Spotlight ── */}
-      <section className="py-16 bg-white dark:bg-gray-950">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#2D0050] via-[#4A0072] to-[#6B21A8] shadow-2xl reveal">
-            {/* gold top bar */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-600" />
-            {/* glow blobs */}
-            <div className="absolute top-0 right-0 w-72 h-72 bg-yellow-400/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-56 h-56 bg-purple-400/20 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-8 lg:p-12">
-              {/* Flyer thumb */}
-              <div className="flex-shrink-0 w-40 h-48 lg:w-48 lg:h-56 rounded-2xl overflow-hidden border-2 border-yellow-500/40 shadow-lg">
-                <Image
-                  src="/refined-woman-flyer-v2.jpg"
-                  alt="Becoming a Refined Woman flyer"
-                  width={192} height={224}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Text */}
-              <div className="flex-1 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 bg-yellow-400/20 border border-yellow-400/40 text-yellow-300 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
-                  🔥 Upcoming Programme · Registrations Open
-                </div>
-                <h3 className="text-white font-bold text-3xl lg:text-4xl leading-tight mb-1">
-                  Becoming a <span className="text-yellow-300">Refined Woman</span>
-                </h3>
-                <p className="text-white/60 text-base mb-4">in Today&apos;s World — A 4-Day Premium Online Training</p>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
-                  <span className="flex items-center gap-1.5 bg-white/10 border border-white/20 text-white text-sm px-3 py-1.5 rounded-full">📅 16–19 July 2026</span>
-                  <span className="flex items-center gap-1.5 bg-white/10 border border-white/20 text-white text-sm px-3 py-1.5 rounded-full">🕖 7 PM WAT Daily</span>
-                  <span className="flex items-center gap-1.5 bg-white/10 border border-white/20 text-white text-sm px-3 py-1.5 rounded-full">📲 Telegram Platform</span>
-                </div>
-                <p className="text-white/60 text-sm leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  Build confidence, refine your image, discover purpose, communicate with influence, and lead with grace — in just 4 days.
-                </p>
-              </div>
-
-              {/* Price + CTA */}
-              <div className="flex-shrink-0 text-center">
-                <div className="text-yellow-300 font-bold text-4xl mb-6">₦10,000</div>
-                <Link href="/refined-woman" className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-yellow-500/30 hover:-translate-y-0.5 transition-all whitespace-nowrap">
-                  Learn More & Register →
-                </Link>
-                <p className="text-white/30 text-xs mt-3">Space is limited</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── What We Offer ── */}
       <section className="py-24 bg-white dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6">
@@ -673,14 +620,14 @@ export default function Home() {
           <div className="bg-gradient-to-r from-violet-700 to-purple-600 rounded-3xl p-12 shadow-2xl">
             <div className="inline-block bg-white/15 text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">Start Today</div>
             <h2 className="text-4xl font-bold text-white mb-4">Ready to Refine Your Image?</h2>
-            <p className="text-white/80 mb-8 max-w-lg mx-auto">Take the first step toward the polished, confident version of yourself. Join a monthly training or register for our upcoming 4-day programme.</p>
+            <p className="text-white/80 mb-8 max-w-lg mx-auto">Take the first step toward the polished, confident version of yourself. Join a monthly training or explore our courses.</p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/refined-woman" className="flex items-center gap-2 bg-white text-violet-700 font-bold px-8 py-3.5 rounded-full hover:shadow-lg transition-all">
-                ✨ Upcoming Programme
-              </Link>
-              <a href="#monthly-training" className="flex items-center gap-2 border-2 border-white/50 text-white font-semibold px-8 py-3.5 rounded-full hover:border-white transition-all">
+              <a href="#monthly-training" className="flex items-center gap-2 bg-white text-violet-700 font-bold px-8 py-3.5 rounded-full hover:shadow-lg transition-all">
                 📅 Monthly Training
               </a>
+              <Link href="/courses" className="flex items-center gap-2 border-2 border-white/50 text-white font-semibold px-8 py-3.5 rounded-full hover:border-white transition-all">
+                ✨ Explore Courses
+              </Link>
             </div>
           </div>
         </div>
